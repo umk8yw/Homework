@@ -1,0 +1,238 @@
+--------------------------------------------------------------------------------------------------------
+	Introduction to objects, Everything is an Object, Controlling program flow
+--------------------------------------------------------------------------------------------------------
+
+	Questions
+
+1.	What is an Object? What is a class?
+
+  A: An Object is an instance of a class.
+     Class is the label(type) of an object.
+
+2.	Which from the following are access specifiers:
+a.	private
+b.	local
+c.	default
+d.	protected
+e.	public
+
+  A: a, c, d, e
+
+3.	Are there some differences between Interface and Abstract Class? If yes, enumerate some of them.
+
+  A: yes
+
+  --------------------------------------------------------------------
+  |  Interface                       |  Abstract class               |
+  --------------------------------------------------------------------
+  |  - does not contain constructor  |  - contains constructor       |
+  |  - contains only the signature of|  - can contain only the       |
+  |  the method (name + paramethers) |  signature of the method, but |
+  |                                  |  it can also the method with  |
+  |                                  |  its implementation           |
+  |  - suports multiple inheritance  |  - does not support multiple  |
+  |                                  |  inheritance                  |
+  |  - does not have access modifiers|  - supports all access        |
+  |  everything is public            |  modifiers                    |
+  --------------------------------------------------------------------
+
+4.	Which are the parts of a method?
+
+  A: accessModifier returnType methodName(methodParameters){
+  
+      ~ body ~
+    }
+
+5.	What is wrong in the following code?
+class Shape {
+ …
+  public int getArea() {
+    …
+  } 
+
+  public double getArea() {
+   …
+  }
+}  
+
+  A: There is missing the return statement inside the methods. 
+
+    class Shape {
+     …
+      public int getArea() {
+        int intVal = 0;
+
+        ~ code ~
+
+        return intVal;
+      } 
+
+      public double getArea() {
+        double doubleVal = 0;
+
+        ~ code ~
+
+        return doubleVal;
+      }
+    }   
+
+6.	What javadoc tag is used to describe the method parameters?
+
+  A: @param
+
+7.	Based on operator precedence order the following operator types:
+-	Arithmetic (and shift)
+-	Relational
+-	Conditional (ternary)
+-	Unary
+-	Assignment
+
+  A: unary -> arithmetic and shift -> relational -> conditional -> assignment 
+    (from the highest precedance to the lowest)
+
+8.	What will be the results of the following code?
+…
+int s = 0;
+for (int i = 0; i < 10; ++i) {
+   s += i; 
+} 
+System.out.println(“Result: “ + s);
+
+  A: Result: 45
+
+	Problems
+
+1.	Create a switch statement that prints a message for each case, and put the switch inside a for loop that tries each case. Put a break after each case and test it, then remove the breaks and see what happens.
+2.	Write a program to transform a decimal number in a binary one.
+3.	Write a program to compute all prime numbers less than a given number.
+
+--------------------------------------------------------------------------------------------------------
+	Initialization & cleanup
+--------------------------------------------------------------------------------------------------------
+	Questions:
+
+1.	What is the role of the constructor?
+
+  A: The role of a constructor is to create an instance of a class (an object at the runtime).
+
+2.	What is the meaning of the default constructor?
+
+  A: A default constructor is created if you don't define any constructors in your class.
+
+3.	Does the java syntax support constructor overloading?
+
+  A: yes
+
+4.	How can you distinguish the overloaded methods?
+
+  A: They have different paramethers.
+
+5.	Find and explain the errors from the following code.
+
+class Person {
+  private String firstName;
+  private String lastName;
+  private int age;
+ 
+  public Person() {
+    System.out.println(“Default constructor”);
+  }
+  public Person(String firstName, String lastName) {
+    System.out.println(“Other constructor”);
+    this();  <----  constructor call should be the first statement in a constructor
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  public Person(String firstName, String lastName, int age) {
+    this();
+    this(firstName, lastName);  <----  constructor call should be the first statement in a constructor
+    this.age = age;
+  }
+
+  public void print() {
+    this();  <----  can't call a constructor from a method 
+    System.out.println(“First Name:” + this.firstName);
+    System.out.println(“Last Name:” + this.lastName);
+    System.out.println(“Age:” + this.age);
+  } 
+  …
+} 
+
+  A: 
+    public class Person {
+
+    private String firstName;
+    private String lastName;
+    private int age;
+
+    public Person() {
+      System.out.println("Default constructor");
+    }
+
+    public Person(String firstName, String lastName) {
+      this();
+      System.out.println("Other constructor");
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+
+    public Person(String firstName, String lastName, int age) {
+      this(firstName, lastName);
+      this.age = age;
+    }
+
+    public void print() {
+      System.out.println("First Name:" + this.firstName);
+      System.out.println("Last Name:" + this.lastName);
+      System.out.println("Age:" + this.age);
+    }
+    -
+  }
+
+6.	When are initialized the static members of a class?
+
+  A:  When the class is initialized.
+
+7.	What will be the result of the execution for the following code:
+public class TestOverloading {
+
+  private void print(float f) {
+    System.out.println("Float: " + f);
+  }
+
+  private void print(double d) {
+    System.out.println("Double: " + d);
+  }
+
+  private void print(int i) {
+    System.out.println("Int: " + i);
+  }
+
+  private void print(char c) {
+    System.out.println("Char: " + c);
+  }
+
+  public static void main(String[] args) {
+    float f = 0;
+    TestOverloading t = new TestOverloading();
+    t.print(f);
+    t.print((int) f);
+    t.print((char) f);
+    t.print((double) f);
+  }
+}
+
+  A:  Float: 0.0
+      Int: 0
+      Char:  
+      Double: 0.0
+
+8.	When and why should we use finalize() method?
+
+  A: finalize() method is used when you want a class to do a last thing before it to be removed from memory by garbage collector.
+
+	Problems:
+
+1.	Create a class with two (overloaded) constructors and call the second constructor inside the first one.
+2.	Create a class with a static String field that is initialized at the point of definition, and another one that is initialized by the static block. Add a static method that prints both fields.
