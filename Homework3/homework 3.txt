@@ -201,6 +201,9 @@ public class A {
 [ZP] x is private so with instanciation is not accesible. A.this.x;
 0
 
+[AB] My reasoning was that: Non-static nested classes (inner classes) have access to other members of the enclosing class, even if they are declared private. 
+  (https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html)
+
 9.	Given the following interface definition:
 
 public interface I1 {
@@ -370,7 +373,6 @@ What strings are printed to the console, and what is value getI() returns?
       The value of i returned by getI() is 6.
 [ZP] Did you test it?
 8
-	
 
   Problems:
 
