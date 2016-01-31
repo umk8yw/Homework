@@ -1,0 +1,209 @@
+--------------------------------------------------------------------------------------------------
+	Reusing Classes
+--------------------------------------------------------------------------------------------------
+	Questions:
+
+1.	Which are the possible ways to reuse a class?
+
+  A: A class can be reused if in other class is created an instance of it, or if it is extended.
+
+2.	Consider having class A, class B extends A and class C extends B. Now create an object of class C. Which is the order the constructors are called?
+
+  A: constructor of A -> constructor of B -> consctructor of C 
+      (from first to last)
+
+3.	How can you call the constructor from the base class in a derived class constructor? When can you do that?
+
+  A: super() keyword is used to appelate the constructor of the base class.
+     It must be the first statement from the derived class constructor.
+     super() without arguments is prezentu by default in all constructors of all classes created, but the Object class.
+
+4.	What would you use to build up an electronic document with text and images – composition or inheritance? But to model a Word document, an Excel spreadsheet and an HTML page?
+
+  A:   All of them are electronic documents that contain text and images, this impicitly means there exists an inheritance type
+      of relationship between them.
+      Composition is also used, since both Word and HTML may contain spread sheets and Excel is a spread sheet editing utility.
+      In any case because Java does not support multiple inheritance i would use composition as much as I can.
+
+5.	How can you make a member private for normal clients and still visible for derived classes?
+
+  A: If the superclass has public or protected methods for accessing its private fields, these can also be used by the subclass.
+     Or, if the base, derived and client class are all in different packages, and the memebers of the base class will be protected, only the derived class will be able to access them. 
+
+6.	Can you change the value of a final object argument? For example, if a method takes a final List argument, can you call clear on it?
+
+  A:  
+      this is possible: 
+     ------------------
+
+      public class TestList {
+  
+        void method(final Lsit<String> l){
+    
+          l.clear();
+        }
+      }
+
+      public stativ void main(String[] args){
+
+        TestList testList = new TestList();
+    
+        List<String> l1 = new ArrayList<>();
+    
+        l1.add("something");
+    
+        testList.method(l1);
+      }
+
+      but this will throw errors:
+     ----------------------------
+
+        public class TestList {
+
+          final List<String> l = Arrays.asList("ceva");
+  
+          void method(){
+    
+            l.clear();
+          }
+        }
+
+7.	Are the methods of a final class also final?
+
+  A: Yes, a final class can not be extended, so its methods can not be overrided.
+ 
+
+
+	Problems:
+
+1.	Write a test program to demonstrate the answer to question 6.
+      --> answer at question 6 
+
+2.	Take the file Cartoon.java and comment out the constructor for the Cartoon class. Explain what happens.
+      --> Cartoon.java file
+
+3.	Prove that default constructors are created for you by the compiler.
+      --> Part1ex3.java file
+
+4.	Create a class called Amphibian. From this, inherit a class called Frog. Put appropriate methods in the base class. In main( ), create a Frog and upcast it to Amphibian, and demonstrate that all the methods still work.
+      --> Amphibian.java file 
+
+5.	Use inheritance and composition to model a graphical object editor. (Solution: have a Graphic class, add a Point that extends Graphic, add a Circle that extends Graphic and has a Point as center, add a Line that extends Graphic and has two Points as the ends).
+      --> Graphic.java file
+
+--------------------------------------------------------------------------------------------------
+	Polymorphism
+--------------------------------------------------------------------------------------------------
+	Questions:
+
+1.	What is the polymorphism?
+
+  A: It is the ability of an object to take on many forms.
+
+2.	What is binding? Classify method binding.
+
+  A: It is the process of identifying the accessed code (methods, fileds, classes) which will be executed when an application is executed.
+
+3.	Which methods can not be overridden?
+
+  A: static methods
+
+4.	Which is the result of the following code? Explain the result.
+class A {
+  public void whoAmI() {
+    System.out.println(“I am class: ” + getName());
+  }
+  private String getName() {
+    return “A”;
+  }
+}
+class B extends A {
+  String getName() {
+     return “B”;
+  }
+}
+public static void main(String[] args) {
+  B b = new B();
+  b.whoAmI();
+}
+
+  Output: I am class: A
+
+  A: Because getName() method from class A is private, class B does not have access to is, so the getName() methid from 
+    class B is not an override method.
+
+5.	Why is not recommended to call methods inside constructors? 
+
+  A: Because object is not yet initialized and you might have problems with some of its fileds.
+
+6.	What is wrong in the following code:
+class A {
+  private Integer i = new Integer(0);
+  A() {
+    printValue();
+  }
+  protected printValue() {    <---   return type is missing
+     System.out.println(“Default value for I is:” + i.intValue());
+  }
+}
+class B {
+   private Integer i;
+   protected printValue() {     <---   return type is missing
+     System.out.println(“Default value for I in B is:” + i.intValue());    <---   crash because i is null
+   }
+}
+Propose solutions for correcting the above code.
+
+  A:
+    solution I
+   ------------
+      class A {
+        protected Integer i = new Integer(0);
+        A() {
+          printValue();
+        }
+        protected printValue() {    
+          System.out.println(“Default value for I is:” + i.intValue());
+        }
+      }
+      class B extends A{
+        //  private Integer i;
+        protected printValue() {   
+          System.out.println(“Default value for I in B is:” + i.intValue());    
+        }
+      }
+
+    solution II
+   -------------
+      class A {
+        private Integer i = new Integer(0);
+        A() {
+          printValue();
+        }
+        protected printValue() {    
+          System.out.println(“Default value for I is:” + i.intValue());
+        }
+      }
+      class B {
+        private Integer i = new Integer(0);
+        protected printValue() {   
+          System.out.println(“Default value for I in B is:” + i.intValue());    
+        }
+      }
+
+
+
+	Problems:
+
+1.	Create an abstract class with no methods. Derive a class and add a method. Create a static method that takes a reference to the base class, downcasts it to the derived class, and calls the method. In main( ), demonstrate that it works. Now put the abstract declaration for the method in the base class, thus eliminating the need for the downcast.
+      --> Part2ex1.java file
+
+2.	Create a base class with two methods. In the first method, call the second method. Inherit a class and override the second method. Create an object of the derived class, upcast it to the base type, and call the first method. Explain what happens.
+      --> Part2ex2.java file
+
+3.	Consider the folowing code:
+	B b = new B();
+	b.print();  // should print “from b”.
+	((A)b).print(); //should print “from a”.
+	Implement those two classes in order to obtain the expected outputs.
+      --> A.java file
