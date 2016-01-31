@@ -12,11 +12,12 @@ public class RandomPlay {
 		Random random = new Random();
 		int nr1 = random.nextInt(10) + 1;
 		int nr2 = random.nextInt(10) + 1;
-		
+		//[ZP] if nr1 = 1 and nr = 7 ?????
 		if((nr1 - nr2) > 3)
 			try {
 				throw new DifferenceException("result smaller than 3");
 			} catch (DifferenceException e) {
+				System.out.println(i);
 				i++;
 				message =  e.getMessage();
 			}
@@ -25,7 +26,7 @@ public class RandomPlay {
 	public static void main(String[] args) throws DifferenceException{
 		
 		RandomPlay play = new RandomPlay();
-		
+		//[ZP] don't know if 100 iteration is enough
 		for(int index = 0; index < 100; index++)
 			play.generate();
 		

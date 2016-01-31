@@ -1,5 +1,5 @@
 package com.atraxo.homework3;
-
+//[ZP] where is the iterator defined in the probelm
 interface TrackIterator {
 	
 	void nextTrack();

@@ -1,5 +1,7 @@
 package com.atraxo.homework2;
 
+//[ZP] Reusing classes. You didn't reuse any functionality of the Amphibian
+// if something is not clear please ask, clarify, plan and work
 public class Amphibian {
 
 	static void jump(Amphibian a) {

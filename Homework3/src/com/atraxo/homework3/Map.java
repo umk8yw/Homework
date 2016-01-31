@@ -27,7 +27,7 @@ public class Map {
 			
 			@Override
 			public boolean hasNext() {
-				
+				//[ZP] ????????
 				return (index >= directions.length ? false : (directions[index] != null ? true : false));
 			}
 		});

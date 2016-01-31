@@ -4,15 +4,15 @@ public class Part2ex2 {
 
 	public void firstMethod(){
 		
-		System.out.println("first method");
-		
+		System.out.println("first method" + this);
+		//[ZP] why this instance is created? just call from the first method the second one.
 		Part2ex2 ex = new Part2ex2();
 		ex.secondMethod();
 	}
 	
 	public void secondMethod(){
 		
-		System.out.println("second method");
+		System.out.println("second method" + this);
 	}
 }
 
@@ -21,13 +21,13 @@ class SecondClass extends Part2ex2{
 	@Override
 	public void secondMethod() {
 		
-		System.out.println("overriden method");
+		System.out.println("overriden method" + this);
 	}
 }
 
 class StartP2E2{
 	
-	public static void main(String[] args){
+	public static void main(String[] args){  
 		
 		SecondClass sub = new SecondClass();
 		Part2ex2 ex = sub;

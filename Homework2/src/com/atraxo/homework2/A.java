@@ -29,3 +29,4 @@ class StartP2E3{
 }
 
 //	the basis of polymorphism does not work in the way this exercise asks 
+//[ZP] Think how should you modify the classes and specially the print methods to solve the exercise

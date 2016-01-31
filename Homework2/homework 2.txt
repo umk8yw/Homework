@@ -23,7 +23,7 @@
 [ZP]: super([args...]);
 8
 
-4.	What would you use to build up an electronic document with text and images – composition or inheritance? But to model a Word document, an Excel spreadsheet and an HTML page?
+4.	What would you use to build up an electronic document with text and images ï¿½ composition or inheritance? But to model a Word document, an Excel spreadsheet and an HTML page?
 
   A:   All of them are electronic documents that contain text and images, this impicitly means there exists an inheritance type
       of relationship between them.
@@ -89,6 +89,7 @@
 
 1.	Write a test program to demonstrate the answer to question 6.
       --> answer at question 6 
+      [ZP] I need a program
 
 2.	Take the file Cartoon.java and comment out the constructor for the Cartoon class. Explain what happens.
       --> Cartoon.java file
@@ -128,15 +129,15 @@
 4.	Which is the result of the following code? Explain the result.
 class A {
   public void whoAmI() {
-    System.out.println(“I am class: ” + getName());
+    System.out.println(ï¿½I am class: ï¿½ + getName());
   }
   private String getName() {
-    return “A”;
+    return ï¿½Aï¿½;
   }
 }
 class B extends A {
   String getName() {
-     return “B”;
+     return ï¿½Bï¿½;
   }
 }
 public static void main(String[] args) {
@@ -162,13 +163,13 @@ class A {
     printValue();
   }
   protected printValue() {    <---   return type is missing
-     System.out.println(“Default value for I is:” + i.intValue());
+     System.out.println(ï¿½Default value for I is:ï¿½ + i.intValue());
   }
 }
 class B {
    private Integer i;
    protected printValue() {     <---   return type is missing
-     System.out.println(“Default value for I in B is:” + i.intValue());    <---   crash because i is null
+     System.out.println(ï¿½Default value for I in B is:ï¿½ + i.intValue());    <---   crash because i is null
    }
 }
 Propose solutions for correcting the above code.
@@ -182,13 +183,13 @@ Propose solutions for correcting the above code.
           printValue();
         }
         protected printValue() {    
-          System.out.println(“Default value for I is:” + i.intValue());
+          System.out.println(ï¿½Default value for I is:ï¿½ + i.intValue());
         }
       }
       class B extends A{
         //  private Integer i;
         protected printValue() {   
-          System.out.println(“Default value for I in B is:” + i.intValue());    
+          System.out.println(ï¿½Default value for I in B is:ï¿½ + i.intValue());    
         }
       }
 
@@ -200,13 +201,13 @@ Propose solutions for correcting the above code.
           printValue();
         }
         protected printValue() {    
-          System.out.println(“Default value for I is:” + i.intValue());
+          System.out.println(ï¿½Default value for I is:ï¿½ + i.intValue());
         }
       }
       class B {
         private Integer i = new Integer(0);
         protected printValue() {   
-          System.out.println(“Default value for I in B is:” + i.intValue());    
+          System.out.println(ï¿½Default value for I in B is:ï¿½ + i.intValue());    
         }
       }
 
@@ -223,7 +224,7 @@ Propose solutions for correcting the above code.
 
 3.	Consider the folowing code:
 	B b = new B();
-	b.print();  // should print “from b”.
-	((A)b).print(); //should print “from a”.
+	b.print();  // should print ï¿½from bï¿½.
+	((A)b).print(); //should print ï¿½from aï¿½.
 	Implement those two classes in order to obtain the expected outputs.
       --> A.java file
