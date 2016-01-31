@@ -6,17 +6,22 @@
 1.	Which are the possible ways to reuse a class?
 
   A: A class can be reused if in other class is created an instance of it, or if it is extended.
+[ZP]: 10
 
 2.	Consider having class A, class B extends A and class C extends B. Now create an object of class C. Which is the order the constructors are called?
 
   A: constructor of A -> constructor of B -> consctructor of C 
       (from first to last)
+[ZP]: Object->A->B->C
+0
 
 3.	How can you call the constructor from the base class in a derived class constructor? When can you do that?
 
   A: super() keyword is used to appelate the constructor of the base class.
      It must be the first statement from the derived class constructor.
      super() without arguments is prezentu by default in all constructors of all classes created, but the Object class.
+[ZP]: super([args...]);
+8
 
 4.	What would you use to build up an electronic document with text and images – composition or inheritance? But to model a Word document, an Excel spreadsheet and an HTML page?
 
@@ -24,12 +29,16 @@
       of relationship between them.
       Composition is also used, since both Word and HTML may contain spread sheets and Excel is a spread sheet editing utility.
       In any case because Java does not support multiple inheritance i would use composition as much as I can.
+[ZP] "with" You should create an electric document which "has" text and image. "has-a" relation => composition
+     All of them are documents. => inheritance.
+10
 
 5.	How can you make a member private for normal clients and still visible for derived classes?
 
   A: If the superclass has public or protected methods for accessing its private fields, these can also be used by the subclass.
      Or, if the base, derived and client class are all in different packages, and the memebers of the base class will be protected, only the derived class will be able to access them. 
-
+[ZP]
+10
 6.	Can you change the value of a final object argument? For example, if a method takes a final List argument, can you call clear on it?
 
   A:  
@@ -67,11 +76,13 @@
             l.clear();
           }
         }
-
+[ZP] if "l" is not final can you call clear? why?
+10
 7.	Are the methods of a final class also final?
 
   A: Yes, a final class can not be extended, so its methods can not be overrided.
- 
+[ZP]
+10 
 
 
 	Problems:
@@ -99,14 +110,20 @@
 1.	What is the polymorphism?
 
   A: It is the ability of an object to take on many forms.
+[ZP]
+10
 
 2.	What is binding? Classify method binding.
 
   A: It is the process of identifying the accessed code (methods, fileds, classes) which will be executed when an application is executed.
+[ZP] Connecting a method call to a method body is called binding. early binding and late binding
+0
 
 3.	Which methods can not be overridden?
 
   A: static methods
+[ZP] and....
+5
 
 4.	Which is the result of the following code? Explain the result.
 class A {
@@ -131,11 +148,13 @@ public static void main(String[] args) {
 
   A: Because getName() method from class A is private, class B does not have access to is, so the getName() methid from 
     class B is not an override method.
-
+[ZP]
+10
 5.	Why is not recommended to call methods inside constructors? 
 
   A: Because object is not yet initialized and you might have problems with some of its fileds.
-
+[ZP]
+10
 6.	What is wrong in the following code:
 class A {
   private Integer i = new Integer(0);
@@ -191,7 +210,8 @@ Propose solutions for correcting the above code.
         }
       }
 
-
+[ZP]
+0
 
 	Problems:
 

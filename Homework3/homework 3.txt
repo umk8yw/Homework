@@ -20,6 +20,8 @@
   |  - does not have access modifiers|  - supports all access        |
   |  everything is public            |  modifiers                    |
   --------------------------------------------------------------------
+[ZP]
+10
 
 2.	Write a short code snippet to define a new interface I3 that inherits two existing interfaces I1 and I2. What happens if the definitions of the I1 and I2 are:
 public interface I1 {
@@ -42,6 +44,8 @@ public interface I2 {
   A:  but here is a problem, because an override method must have the same return type.
       If we let it like this, the compiler won't know which foo() method to choose.
 
+[ZP]
+10
 3.	Point any errors in the code snippet below and explain them:
 interface Shape {
    int getArea();   <---  if we comment this the problem will be solved
@@ -57,7 +61,7 @@ public class Tile {
 
 public class TileShape extends Tile implements Shape {
    public void draw() {
-     System.out.println(“This a tile with area of: “ + this.getArea());
+     System.out.println(Â“This a tile with area of: Â“ + this.getArea());
    }
    public static void main(String[] args) {
      TileShape tileShape = new TileShape();
@@ -70,13 +74,17 @@ public class TileShape extends Tile implements Shape {
 
   A: The problem is that there is an intersection type containing a interface containing a method whose signature matches a method on the Tile class.
 
+[ZP] Do we have other solution to solve the problem.
+10
+
 4.	What are the access modifiers of the fields and methods inside the interface? Is it possible to declare an interface as being static? What about private? 
 
   A:  From Java 8 it is possibe to declare static and default methods and they will be able to have their own implementation. 
       A static mehod can not be inherit from a superinterface.
       All fields of an interface are public, static and final.
       An interface can not be declared nighter static nor private.
-
+[ZP] what about inner interfaces?
+5
 5.	What are the differences between inner classes and nested classes?
 
   A:  A nested class is an inner static class.
@@ -85,6 +93,8 @@ public class TileShape extends Tile implements Shape {
           InnerClass i = c.new InnerClass();
       Creating an instrance of a nested class:
           BaseClass.Nestedlass n = new BaseClass.NestedClass();
+[ZP]Nested classes can be further classified into two different types of classes: non-static nested classes and static nested classes. Non-static nested classes are more formally known as inner classes. So, think of nested classes as a big container with 2 smaller boxes inside â€“ 1 box is for static nested classes, and another box is for inner classes (also known as non-static nested classes).
+4
 
 6.	Provide a short code snippet to define an inner anonymous class:
 a.	That implements a given interface I1 with one method: void f();
@@ -147,7 +157,8 @@ c.	That extends a given class C2 with no default constructor and a constructor w
           });
         }
       }
-
+[ZP]
+10
 7.	Which of the following are true when talking about inner classes (non-anonymous):
 a.	Can be declared inside other inner classes
 b.	Can be declared inside methods and blocks of code
@@ -157,9 +168,10 @@ e.	Defines an IS-A relationship between the outer and the inner class
 f.	Can be further extended by other classes
 
   A: a, b, c, d, f(can be extended by other inner classes)
+10
 
 8.	Given the code below, how can you access from the method f() the x member of the outer class?
-…
+Â…
 public class A {
   private int x = 10;
   private class B {
@@ -186,6 +198,8 @@ public class A {
       }
 
     } 
+[ZP] x is private so with instanciation is not accesible. A.this.x;
+0
 
 9.	Given the following interface definition:
 
@@ -225,6 +239,7 @@ public class A2 implements I1.I2 {
       2 -> wrong - the method f2() defined in A2 should be public, cannot reduce the visibility of the inherited method
       3 -> correct if we add the following import statement import learn.inner.classes.I1.I2;
       4 -> wrong - a body should be added to the method, or make the class and the methos abstract
+[ZP]10
 
 10.	Given the following class, how can you create a new instance of the classes A and B in the main method():
 
@@ -245,7 +260,8 @@ class MyTest {
     Test.B b = new Test.B();
    }
 }
-
+[ZP]
+10
 
 
 	Problems:
@@ -256,11 +272,11 @@ public interface Iterator {
   Object next();
 }
 public class Map {
-  private String[] directions = {“North”, “East”, “South”, “West”};
+  private String[] directions = {Â“NorthÂ”, Â“EastÂ”, Â“SouthÂ”, Â“WestÂ”};
 }
-…
+Â…
 public void foo(Iterator it) {
- // …
+ // Â…
 }
   --> Map.java file
 
@@ -270,16 +286,16 @@ public interface Iterator {
   Object next();
 }
 public class CDPlayer {
-  private String[] tracks = {“Track 1”, “Track 2”, “Track 3”};
+  private String[] tracks = {Â“Track 1Â”, Â“Track 2Â”, Â“Track 3Â”};
   private int currentTrack;
 
-  public void next() { //… }
-  public void play() { //… }
-  public void stop() { //… }
-  public void prev() { //… }
+  public void next() { //Â… }
+  public void play() { //Â… }
+  public void stop() { //Â… }
+  public void prev() { //Â… }
 }
 public void foo(Iterator it) {
- // …
+ // Â…
 }
 
 -------------------------------------------------------------------------------------------------
@@ -290,17 +306,21 @@ public void foo(Iterator it) {
 1.	What information you can print about an exception?
 
   A:  You can print the message of the exception, the cause of the exception, the class where was the problem and all the StackTrace.
+[ZP]
+10
 
 2.	What is the class name of the standard Java exception that does not have to be handled?
 
   A:  RuntimeException
-
+[ZP]
+10
 3.	What is the exception restriction related to method overriding? Do constructors have the same restriction? Why?
 
   A:  If you override a method you can not add other thrown exceptions at its declaration. You can remove the initial one, but can't add new ones.
       If the method from the super class or interface doesn't throw an exception and you refer to your object as that type, you will get unexpected behaviour.
       Constructors does not have the same restriction.
-
+[ZP]
+7
 4.a.	Is the exception specification part of the method signature? Prove your answer by writing a small piece of code to justify your answer; comment your proof.
 
   A:  No.
@@ -314,11 +334,13 @@ public void foo(Iterator it) {
         ~ code ~
       }
     }
-
+[ZP]
+10
 4.b.	Which parts of the method declaration go in the method signature? 
 
   A:  Name of the method and its arguments.
-
+[ZP]
+10
 5.	Knowing that 
 System.out.print
 does not throw any exception, consider the following of code:
@@ -346,14 +368,15 @@ What strings are printed to the console, and what is value getI() returns?
       finally i is 4
 
       The value of i returned by getI() is 6.
-
+[ZP] Did you test it?
+8
 	
 
   Problems:
 
 1.	Follow the steps below to create a small Java program with 2 classes:
 a.	create a class RandomPlay with a method that generates two random numbers between 1 and 10 (see java.lang.Math.random() for generating random numbers)
-b.	if the difference of the 2 numbers is higher than 3, throw an exception you’ll specially define for this case
+b.	if the difference of the 2 numbers is higher than 3, throw an exception youÂ’ll specially define for this case
 c.	add a main() method to class RandomPlay that repeatedly calls the first method until it throws no exception
 d.	exit the program by printing the number of times the first method threw your exception
       --> RandomPlay.java file
