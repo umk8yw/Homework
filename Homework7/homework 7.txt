@@ -1,0 +1,112 @@
+--------------------------------------------------------------------------------------------------
+	The Java I/O system
+--------------------------------------------------------------------------------------------------
+
+	Questions
+
+1.	Which of the next statements are true:
+a.	The File class is used for random access to binary files 
+b.	To list all the files with java extension in a directory, a FilenameFilter class has to be provided  as parameter to the list() method of the File class
+c.	A File object can represent both a file and directory
+d.	Using the File class is possible to look at the characteristics of files
+
+2.	Which is the base class of decorators for classes having as base class the InputStream?
+
+3.	What is the main difference between PrintStream and DataOutputStream classes?
+
+4.	Is it possible to do random access file using InputStream classes?
+
+5.	Check the next code snippet for correctness:
+    // 1. Reading input by lines:
+    BufferedReader in =
+      new BufferedReader(
+        new FileInpuStream("IOStreamDemo.java"));
+    String s, s2 = new String();
+    while((s = in.readLine())!= null)
+      s2 += s + "\n";
+    in.close();
+
+6.	Which class is used to add a new file to a zip archive? 
+
+7.	How the serialization of a class can be customized in order to avoid the default serialization?
+
+8.	What is the difference in the construction of a Serializable and an Externalizable object during the serialization?
+
+9.	 What is weird in the next class:
+public class Account implements Externalizable {
+    private transient String id;
+    private transient String password;
+
+    Account(String id, String password) {
+        this.id = id;
+        this.password = password;
+    }
+
+    public void writeExternal(ObjectOutput out)
+            throws IOException {
+        out.writeObject(id);
+    }
+
+    public void readExternal(ObjectInput in)
+            throws IOException, ClassNotFoundException {
+        id = (String)in.readObject();
+    }
+}
+
+10.	With which kind of objects is working the StreamTokenizer class?
+
+11.	Which of the following classes can produce a FileChannel:
+a. ByteArrayInputStream
+b. FileOutputStream
+c. RandomAccessFile
+d. InputStreamReader
+e. FilterOutputStream
+
+12.	Can Reader and Writer character-mode classes interoperate with channels? How?
+
+13.	Make the appropriate changes to the code below to correctly copy a source file to a destination file and explain your changes.
+
+	FileChannel in = new FileInputStream(args[0]).getChannel();
+	FileChannel out = new FileOutputStream(args[1]).getChannel();
+		ByteBuffer buffer;
+		while(in.read(buffer) != -1) {
+			out.write(buffer);
+			buffer.clear();
+		}
+
+14.	What is wrong in the code below:
+    private static final int SIZE = 1024;
+    private static final String FILE_NAME = "simpleFile.txt";
+
+    public static void main(String[] args) throws Exception {
+        FileChannel fc = new FileOutputStream(FILE_NAME).getChannel();
+        fc.write(CharBuffer.wrap("Content of a simple file. Persönliche Informationen.".toCharArray()));
+        fc.close();
+        fc = new FileInputStream(FILE_NAME).getChannel();
+        ByteBuffer buff = ByteBuffer.allocate(SIZE);
+        fc.read(buff);
+        buff.flip();
+        System.out.println(buff.asCharBuffer());
+        fc.close();
+    }
+Make the appropriate changes so that the code will correctly write and read the content of a simple file.
+
+15. What is a View Buffer? Explain for what it should be used.
+
+
+
+
+Problems
+
+1.	Create a code to open a text file and read the file one line at a time.
+
+2.	Create an externalizable class called Account which contains an id and a password, the password is not serialized.
+
+3.	Write a program that compares the performance of writing the lines to a file when using buffered and unbuffered I/O both for writer and output stream classes.
+
+4.	Write in a file 4 integers and then reread the third and fourth ones using random access to the file.
+
+5.	Read an arbitrary file, compress it to another file and display the compression ratio.
+
+6.	Write a program using nio features which reads the content of a file and generates a new file which contains all the words from the first file changed so that they have now the letters in the opposite order. 
+EXample: I go home. will be transformed in I og emoh.

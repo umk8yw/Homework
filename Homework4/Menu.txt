@@ -1,0 +1,4 @@
+Available shapes:
+	- Square
+	- Triangle
+	- Circle 

@@ -6,12 +6,17 @@
 
 1.	What is the difference between upcasting and downcasting? 
 
-  A:
+  A: Upcasting is casting to a supertype and down casting is casting to a subtype.
+     Upcasting is always allowed, but downcasting involves a type check and it can throw an exception.
+     For example we have class Animal and class Cat extend Animal.
+     We can say that all cats are animals, but we can not say that all animals are cats. This is why we need to check the type before doing a downcast.
 
 2.	What is the difference between “traditional” RTTI and reflection? 
 
   A:  RTTI is a C++ specific term referring to the functionality that allows the program to determine the dynamic types at runtime.
       Reflection is a term used across programming languages to refer to the ability of a program to inspect and modify its types.
+      The difference between RTTI and reflection is that with RTTI, the compiler opens and examines the .class file at compile time.
+      With reflection, the .class file is unavailable at compile time, it is opened and examined by the run-time environment.
 
 3.	Let there be the following code fragment: 
 public class Circle {}
@@ -28,11 +33,17 @@ c.	c.getClass() == Shape.class
 d.	c.isInstance(Shape)
 e.	c.getClass() == Circle.class
 
+	A: a. ->
+	   b. -> false
+	   c. -> true
+	   d. ->
+	   e. -> true
+	   
 4.	Is it possible to build a valid line of Java code in a string and then execute it at run-time (Like in the sample below)? Write a short program to back-up your answer.  
 String line = "someClass.method()"; 
 run(line);   
 
-  A:
+  A: Yes, it is possible: TestReflection.java
 
 	Problems:
 
@@ -43,6 +54,8 @@ public interface Shape {
 }
 Note: Write the simplest thing that meets the requirements. The dimensions of the shapes will be hardcoded (for ex.: every Circle drawn will have the same radius)
 
+	--> Part1Ex1java file
+
 2.	Write a program that by means of reflection creates an instance of the following class: 
 public class Unknown {
   private int hidden;
@@ -50,7 +63,12 @@ public class Unknown {
     this.hidden = i + 1;
   }
 }
+
+	--> Part1Ex2.java file
+	
 3.	Write a test program using reflection to print out the value of the hidden attribute after an instance of the Unknown class has been created in the previous exercise. If you have succeeded, try to double the value of the hidden attribute of this instance. Hint: check-out the java.lang.reflect package.
+
+	--> Part1Ex3.java file
 
 -----------------------------------------------------------------------------------------------------
 	Passing and returning objects
