@@ -11,7 +11,7 @@
      For example we have class Animal and class Cat extend Animal.
      We can say that all cats are animals, but we can not say that all animals are cats. This is why we need to check the type before doing a downcast.
 
-2.	What is the difference between “traditional” RTTI and reflection? 
+2.	What is the difference between ï¿½traditionalï¿½ RTTI and reflection? 
 
   A:  RTTI is a C++ specific term referring to the functionality that allows the program to determine the dynamic types at runtime.
       Reflection is a term used across programming languages to refer to the ability of a program to inspect and modify its types.
@@ -92,7 +92,7 @@ public class Unknown {
   	 Requests are sent between methods. 
   	 By calling a method you are telling an object what to do, so this is the way you are sending messages to it.
 
-3.	What “pass by value” means? Explain how passing arguments works in Java. 
+3.	What ï¿½pass by valueï¿½ means? Explain how passing arguments works in Java. 
 
   A:   
 
@@ -161,5 +161,7 @@ methods: setters, getters, draw, area, clone
 Class Shape
 attributes: Circle circle, Line line
  methods: draw, clone
+
+	--> Part2Ex1.java file
 
 2.	Implement arithmetical operations on complex numbers having the form a+i*b using the mutable-companion class technique. Implement a method that adds the result of the expression (2+3*i)*(4+5*i)*(6+7*i) to the object owner of the method.

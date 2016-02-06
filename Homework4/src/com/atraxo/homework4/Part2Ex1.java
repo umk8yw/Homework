@@ -1,50 +1,58 @@
 package com.atraxo.homework4;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 public class Part2Ex1 {
 
 	public static void main(String[] args) {
 
-		OtherShape shape = new OtherShape();
-		System.out.println(shape.clone());
+		Point point = new Point();
+		point.setX(10);
+		point.setY(20);
 		
-		//	http://www.avajava.com/tutorials/lessons/how-do-i-perform-a-deep-clone-using-serializable.html
-	}
-}
-
-class OtherShape {
-	Circle circle;
-	Line line;
-
-	public void draw() {
-
-	}
-
-	public Object clone() {
+		Line line = new Line();
+		line.setPoint1(point);
+		line.setPoint2(point);
+		
+		Circle1 circle = new Circle1();
+		circle.setCenter(point);
+		circle.setRadius(43);
+		
+		Shape1 shape = new Shape1(circle, line);
 		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ObjectOutputStream oos = new ObjectOutputStream(baos);
-			oos.writeObject(this);
-
-			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-			ObjectInputStream ois = new ObjectInputStream(bais);
-			return ois.readObject();
-		} catch (IOException e) {
-			return null;
-		} catch (ClassNotFoundException e) {
-			return null;
+			Shape1 cloned = (Shape1) shape.clone();
+			cloned.draw();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
 		}
 	}
 }
 
-class Point extends OtherShape {
-	int x;
-	int y;
+class Shape1 implements Cloneable{
+	private Circle1 circle;
+	private Line line;
+	
+	public Shape1(Circle1 circle, Line line) {
+		this.circle = circle;
+		this.line = line;
+	}
+
+	public void draw() {
+		System.out.println("you have drawn a shape with: ");
+		line.draw();
+		circle.draw();		
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		
+		Shape1 cloned = (Shape1)super.clone();
+		line = (Line) line.clone();
+		circle = (Circle1) circle.clone();
+		return cloned;
+	}
+}
+
+class Point implements Cloneable{
+	private int x;
+	private int y;
 
 	public int getX() {
 		return x;
@@ -61,11 +69,19 @@ class Point extends OtherShape {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public void draw() {
+		System.out.println("point with x: " + getX() + " and y: " + getY());
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }
 
-class Line extends OtherShape {
-	Point point1;
-	Point point2;
+class Line implements Cloneable{
+	private Point point1;
+	private Point point2;
 
 	public Point getPoint1() {
 		return point1;
@@ -82,11 +98,23 @@ class Line extends OtherShape {
 	public void setPoint2(Point point2) {
 		this.point2 = point2;
 	}
+	
+	public void draw() {
+		System.out.println("line with point1: " + getPoint1() + " and point1: " + getPoint2());
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		
+		Line cloned = (Line)super.clone();
+	    cloned.setPoint1((Point)cloned.getPoint1().clone());
+	    cloned.setPoint2((Point)cloned.getPoint2().clone());
+	    return cloned;
+	}
 }
 
-class OtherCircle extends OtherShape {
-	Point center;
-	int radius;
+class Circle1 implements Cloneable{
+	private Point center;
+	private int radius;
 
 	public Point getCenter() {
 		return center;
@@ -106,5 +134,17 @@ class OtherCircle extends OtherShape {
 
 	public double area() {
 		return 3.14 * radius * radius;
+	}
+	
+	public void draw() {
+		System.out.println("circle with center: " + getCenter() + " and radius: " + getRadius());
+		center.draw();
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		
+		Circle1 cloned = (Circle1)super.clone();
+	    cloned.setCenter((Point)cloned.getCenter().clone());
+	    return cloned;
 	}
 }

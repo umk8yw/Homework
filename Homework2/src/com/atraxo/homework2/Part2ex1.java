@@ -3,7 +3,7 @@ package com.atraxo.homework2;
 //[ZP] check out the difference
 public abstract class Part2ex1 {
 
-	public abstract void method();
+	//public abstract void method();
 }
 
 class Subclass extends Part2ex1 {
@@ -16,9 +16,9 @@ class Subclass extends Part2ex1 {
 	public static void doSomething(Part2ex1 ex) {
 
 		System.out.println("static method");
-//		Subclass sub = (Subclass) ex;		
-//		sub.method();
-		ex.method();
+		Subclass sub = (Subclass) ex;		
+		sub.method();
+		//ex.method();
 	}
 }
 

@@ -3,7 +3,10 @@ package com.atraxo.homework2;
 public class Graphic {
 
 	//[ZP] why static? let polymorphism to work
-	public static void draw(Graphic graphic) {
+	
+	// stop using static method when you work with inheritance (it might be not needed) !!!
+	
+	public void draw(Graphic graphic) {
 
 		if (graphic.getClass().toString().equals(Circle.class.toString()))
 			System.out.println("you have drown a CIRCLE");
@@ -54,15 +57,17 @@ class Start {
 
 	public static void main(String[] args) {
 
-		Point point = new Point(10, 7);
-		Graphic.draw(point);
+		Graphic graphic = new Graphic();
+		
+		Graphic point = new Point(10, 7);
+		point.draw(point);
 
-		Line line = new Line(point, new Point(43, 10));
-		Graphic.draw(line);
+		Graphic line = new Line((Point) point, new Point(43, 10));
+		line.draw(line);
 
-		Circle circle = new Circle(point, line);
-		Graphic.draw(circle);
+		Graphic circle = new Circle((Point) point, (Line) line);
+		circle.draw(circle);
 
-		Graphic.draw(new Graphic());
+		graphic.draw(new Graphic());
 	}
 }
