@@ -42,17 +42,17 @@ public class Part1Ex1 {
 			System.out.println("Which shape would you like to draw? ");
 			String choice = scanner.nextLine();
 
-			StringBuilder output = new StringBuilder();
 			if(choice != null){
 				
 				if(!Character.isUpperCase(choice.charAt(0))){
 					
-					output = new StringBuilder().append(choice.substring(0, 1).toUpperCase()).append(choice.substring(1));
+					 StringBuilder output = new StringBuilder().append(choice.substring(0, 1).toUpperCase()).append(choice.substring(1));
 					return output.toString();
 				}
 			}else {
 				System.out.println("you schould enter a shape");
 			}
+			return choice;
 		} catch (InputMismatchException e) {
 			e.printStackTrace();
 		}
