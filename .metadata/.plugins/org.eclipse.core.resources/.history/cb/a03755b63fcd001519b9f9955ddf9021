@@ -1,0 +1,5 @@
+package com.atraxo.homework6;
+
+public interface Collection {
+
+}

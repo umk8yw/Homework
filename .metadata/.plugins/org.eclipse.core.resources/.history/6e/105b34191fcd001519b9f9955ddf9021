@@ -1,0 +1,24 @@
+package com.atraxo.homework6;
+
+public class Ex1 {
+
+	public static void main(String[] args) {
+		
+		public static <T> T writeAll(Collection<T> coll, Sink<T> snk){ 
+	        T last;
+	        for (T t : coll) { 
+	            last = t;
+	            snk.flush(last);
+	        }
+	        return last;
+	    }
+		
+	    Sink<Object> s;
+	    Collection<String> cs;
+	    String str = writeAll(cs, s);
+	}
+}
+
+interface Sink<T> { 
+    void flush(T t); 
+}

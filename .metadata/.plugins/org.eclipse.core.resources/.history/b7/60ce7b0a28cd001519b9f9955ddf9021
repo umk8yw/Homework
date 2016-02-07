@@ -1,0 +1,9 @@
+package com.atraxo.homework5;
+
+interface IMessage {
+
+	int getTopic();
+
+	void setTopic(int topic);
+
+}

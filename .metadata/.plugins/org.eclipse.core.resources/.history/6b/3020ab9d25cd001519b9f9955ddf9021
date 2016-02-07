@@ -1,0 +1,40 @@
+package com.atraxo.homework5;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+
+public class Ex4 {
+
+	public static void main(String[] args) {
+		
+		Message message = new Message()
+		Collection<Message> collection = new ArrayList<>();
+		
+		while(true){
+		Random random = new Random();
+		collection.add(new Message(random.nextInt(5) + 1));
+		
+		switch (key) {
+		case value:
+			
+			break;
+
+		default:
+			break;
+		}
+		}
+	}
+}
+
+class Message {
+	private int topic;
+
+	public int getTopic() {
+		return topic;
+	}
+
+	public void setTopic(int topic) {
+		this.topic = topic;
+	}	
+}

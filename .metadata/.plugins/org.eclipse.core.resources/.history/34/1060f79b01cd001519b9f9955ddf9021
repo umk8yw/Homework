@@ -1,0 +1,31 @@
+package com.atraxo.homework5;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ex2 {
+
+	public static void main(String[] args) {
+
+		List<Country> list = new ArrayList<>();
+	}
+}
+
+class Country implements Comparable<String> {
+	 
+	private String name;
+	private String capital;
+	
+	public Country(String name, String capital) {
+		this.name = name;
+		this.capital = capital;
+	}
+
+	@Override
+	public int compareTo(List<Country> list) {
+		
+		
+		
+		return 0;
+	}
+}

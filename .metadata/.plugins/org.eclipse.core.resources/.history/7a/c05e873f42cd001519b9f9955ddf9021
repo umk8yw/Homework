@@ -1,0 +1,29 @@
+package com.atraxo.homework6;
+
+interface Collection<T> {
+	public boolean containsAll(Ex2<? extends java.util.Collection<?>> c);
+
+	public boolean addAll(Ex2<? extends java.util.Collection<?>> c);
+}
+
+class CCollection<T> implements Ex2<T> {
+
+	@Override
+	public boolean containsAll(Ex2<? extends java.util.Collection<?>> c) {
+		return false;
+	}
+
+	@Override
+	public boolean addAll(Ex2<? extends java.util.Collection<?>> c) {
+		return false;
+	}
+
+}
+
+public class Collection {
+
+	public static void main(String[] args) {
+		CCollection<ArrayList<String>> CLString = new CCollection<>();
+	}
+
+}

@@ -1,0 +1,171 @@
+-----------------------------------------------------------------------------------------------------
+	Detecting types
+-----------------------------------------------------------------------------------------------------
+
+	Questions
+
+1.	What is the difference between upcasting and downcasting? 
+
+  A: Upcasting is casting to a supertype and down casting is casting to a subtype.
+     Upcasting is always allowed, but downcasting involves a type check and it can throw an exception.
+     For example we have class Animal and class Cat extend Animal.
+     We can say that all cats are animals, but we can not say that all animals are cats. This is why we need to check the type before doing a downcast.
+
+2.	What is the difference between �traditional� RTTI and reflection? 
+
+  A:  RTTI is a C++ specific term referring to the functionality that allows the program to determine the dynamic types at runtime.
+      Reflection is a term used across programming languages to refer to the ability of a program to inspect and modify its types.
+      The difference between RTTI and reflection is that with RTTI, the compiler opens and examines the .class file at compile time.
+      With reflection, the .class file is unavailable at compile time, it is opened and examined by the run-time environment.
+
+3.	Let there be the following code fragment: 
+public class Circle {}
+public class Shape extends Circle {}
+public class Test {
+  public static void main(String[] args) {	  
+    Circle c = new Circle();
+  }
+}
+Pretend you are an implementation of the Java Virtual Machine and try to evaluate (to a boolean value) the following expressions:
+a.	c.isInstance(Circle)
+b.	c instanceof Shape
+c.	c.getClass() == Shape.class
+d.	c.isInstance(Shape)
+e.	c.getClass() == Circle.class
+
+	A: a. -> will show true if c.getClass().isInstance(c);
+			Circle is not an instance
+	   b. -> false
+	   c. -> true
+	   d. -> will show true if c.getClass().isInstance(s);
+	   		Shape s = new Shape();
+	   e. -> true
+	   
+4.	Is it possible to build a valid line of Java code in a string and then execute it at run-time (Like in the sample below)? Write a short program to back-up your answer.  
+String line = "someClass.method()"; 
+run(line);   
+
+  A: Yes, it is possible: TestReflection.java
+
+	Problems:
+
+1.	Write a very simple graphical editor that allows you to draw objects deriving from the Shape class. Read the available classes of shapes from a configuration file, and present to the user a simple menu that allows him to select the shape to be drawn. 
+public interface Shape {
+  String draw();
+  String getName();
+}
+Note: Write the simplest thing that meets the requirements. The dimensions of the shapes will be hardcoded (for ex.: every Circle drawn will have the same radius)
+
+	--> Part1Ex1java file
+
+2.	Write a program that by means of reflection creates an instance of the following class: 
+public class Unknown {
+  private int hidden;
+  public Unknown(int i) {
+    this.hidden = i + 1;
+  }
+}
+
+	--> Part1Ex2.java file
+	
+3.	Write a test program using reflection to print out the value of the hidden attribute after an instance of the Unknown class has been created in the previous exercise. If you have succeeded, try to double the value of the hidden attribute of this instance. Hint: check-out the java.lang.reflect package.
+
+	--> Part1Ex3.java file
+
+-----------------------------------------------------------------------------------------------------
+	Passing and returning objects
+-----------------------------------------------------------------------------------------------------
+
+	Questions
+
+1.	What is aliasing? Are there possible problems with aliasing? 
+
+  A: Aliasing means to copy the value of the variable on the right side to the left side.
+  	 It also means that there can be many references of different types which refer to the same object. 
+  	 You can copy the value of a reference to other reference, in this way both of them refer to the same object.
+  	 
+  	 If you work only with primitive types there is no problem, because values are only copied, if you change the value of one of them, the other variable is not affected.
+  	 But working with objects is different, because is copied the value of the reference, not the object.
+  	 If the object will be changed, both references will see the change.
+
+2.	How do you send a message to an object? 
+
+  A: Sending a message to an object means to send a request to it.
+  	 Requests are sent between methods. 
+  	 By calling a method you are telling an object what to do, so this is the way you are sending messages to it.
+
+3.	What �pass by value� means? Explain how passing arguments works in Java. 
+
+  A:   
+
+4.	What is the difference between shallow copy and deep copy?
+
+  A:
+
+5.	What is wrong in the following code? 
+
+class MyObject implements Cloneable {
+int i; 
+MyObject(int ii) { i = ii; } 
+public Object clone() { 
+  Object o = super.clone(); 
+  return o;
+}
+public String toString() { 
+  return Integer.toString(i);
+} 
+}
+
+  A:
+
+6.	How many methods has the Cloneable interface? What are the reasons of this interface existence? -
+
+  A:
+
+7.	Is C++ special keyword const available in Java? 
+
+  A:
+
+8.	What is the difference between a read-only object and an immutable object? What is an immutable object? Give an example of a read-only class. 
+
+  A:
+
+9.	What will be the results of the following code? 
+public class StringUtil {
+  public static String lowcase(String s) {
+    return s.toLowerCase();
+  }
+  public static void main(String[] args) {
+    String q = "world is not ENOUGH";
+    String qq = lowcase(q);
+    String qqq = q.substring(q.indexOf("ENOUGH"));
+    qqq.concat(" is not enough");
+    System.out.println(q);
+    System.out.println(qq);
+    System.out.println(qqq);
+  }
+}
+
+  A:
+
+	Problems
+
+1.	Implement the following classes and add deep cloneability to all classes via cloning.
+Class Point
+attributes: int x, int y
+methods: setters, getters, draw, clone
+Class Line 
+attributes: Point point1, Point point2
+ methods: setters, getters, draw, clone
+Class Circle
+attributes:  Point center, int radius
+methods: setters, getters, draw, area, clone
+Class Shape
+attributes: Circle circle, Line line
+ methods: draw, clone
+
+	--> Part2Ex1.java file
+
+2.	Implement arithmetical operations on complex numbers having the form a+i*b using the mutable-companion class technique. Implement a method that adds the result of the expression (2+3*i)*(4+5*i)*(6+7*i) to the object owner of the method.
+
+	--> Part2Ex2.java file

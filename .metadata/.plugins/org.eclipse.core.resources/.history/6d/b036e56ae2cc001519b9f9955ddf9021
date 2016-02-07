@@ -1,0 +1,24 @@
+package com.atraxo.homework5;
+
+import java.util.ArrayList;
+
+public class Ex1 {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> array1 = new ArrayList<Integer>();
+		array1.add(1);
+		array1.add(3);
+		array1.add(5);
+		ArrayList<Integer> array2 = new ArrayList<Integer>();
+		array2.add(2);
+		array2.add(4);
+		array2.add(6);
+
+		for (Integer index : array2) {
+			array1.add(index - 1, index);
+		}
+
+		for (Integer index : array1)
+			System.out.println(index);
+	}
+}

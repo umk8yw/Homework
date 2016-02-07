@@ -1,0 +1,13 @@
+package tests;
+
+class Object implements Cloneable {
+int i; 
+Object(int ii) { i = ii; } 
+public Object clone() { 
+  Object o = super.clone(); 
+  return o;
+}
+public String toString() { 
+  return Integer.toString(i);
+} 
+}

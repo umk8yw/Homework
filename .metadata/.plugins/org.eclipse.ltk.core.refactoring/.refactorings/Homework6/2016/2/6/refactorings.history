@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename source folder &apos;Homework6/rsrc&apos; to &apos;src&apos;&#x0A;- Original project: &apos;Homework6&apos;&#x0A;- Original element: &apos;Homework6/rsrc&apos;&#x0A;- Renamed element: &apos;rsrc&apos;" description="Rename source folder &apos;rsrc&apos;" id="org.eclipse.jdt.ui.rename.source.folder" input="/rsrc" name="src" stamp="1454789826262" version="1.0"/>
+</session>

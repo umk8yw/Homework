@@ -1,0 +1,6 @@
+package com.atraxo.homework6;
+
+public interface Collection<T> {
+	public boolean containsAll(T c);
+    public boolean addAll(T c);
+}

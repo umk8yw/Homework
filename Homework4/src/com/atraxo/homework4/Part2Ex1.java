@@ -7,15 +7,15 @@ public class Part2Ex1 {
 		Point point = new Point();
 		point.setX(10);
 		point.setY(20);
-		
+
 		Line line = new Line();
 		line.setPoint1(point);
 		line.setPoint2(point);
-		
+
 		Circle1 circle = new Circle1();
 		circle.setCenter(point);
 		circle.setRadius(43);
-		
+
 		Shape1 shape = new Shape1(circle, line);
 		try {
 			Shape1 cloned = (Shape1) shape.clone();
@@ -26,10 +26,10 @@ public class Part2Ex1 {
 	}
 }
 
-class Shape1 implements Cloneable{
+class Shape1 implements Cloneable {
 	private Circle1 circle;
 	private Line line;
-	
+
 	public Shape1(Circle1 circle, Line line) {
 		this.circle = circle;
 		this.line = line;
@@ -38,19 +38,19 @@ class Shape1 implements Cloneable{
 	public void draw() {
 		System.out.println("you have drawn a shape with: ");
 		line.draw();
-		circle.draw();		
+		circle.draw();
 	}
 
 	public Object clone() throws CloneNotSupportedException {
-		
-		Shape1 cloned = (Shape1)super.clone();
+
+		Shape1 cloned = (Shape1) super.clone();
 		line = (Line) line.clone();
 		circle = (Circle1) circle.clone();
 		return cloned;
 	}
 }
 
-class Point implements Cloneable{
+class Point implements Cloneable {
 	private int x;
 	private int y;
 
@@ -69,7 +69,7 @@ class Point implements Cloneable{
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	public void draw() {
 		System.out.println("point with x: " + getX() + " and y: " + getY());
 	}
@@ -79,7 +79,7 @@ class Point implements Cloneable{
 	}
 }
 
-class Line implements Cloneable{
+class Line implements Cloneable {
 	private Point point1;
 	private Point point2;
 
@@ -98,21 +98,24 @@ class Line implements Cloneable{
 	public void setPoint2(Point point2) {
 		this.point2 = point2;
 	}
-	
+
 	public void draw() {
-		System.out.println("line with point1: " + getPoint1() + " and point1: " + getPoint2());
+		System.out.println("line with point1: ");
+		getPoint1().draw();
+		System.out.print(" and point2:");
+		getPoint2().draw();
 	}
 
 	public Object clone() throws CloneNotSupportedException {
-		
-		Line cloned = (Line)super.clone();
-	    cloned.setPoint1((Point)cloned.getPoint1().clone());
-	    cloned.setPoint2((Point)cloned.getPoint2().clone());
-	    return cloned;
+
+		Line cloned = (Line) super.clone();
+		cloned.setPoint1((Point) cloned.getPoint1().clone());
+		cloned.setPoint2((Point) cloned.getPoint2().clone());
+		return cloned;
 	}
 }
 
-class Circle1 implements Cloneable{
+class Circle1 implements Cloneable {
 	private Point center;
 	private int radius;
 
@@ -135,16 +138,17 @@ class Circle1 implements Cloneable{
 	public double area() {
 		return 3.14 * radius * radius;
 	}
-	
+
 	public void draw() {
-		System.out.println("circle with center: " + getCenter() + " and radius: " + getRadius());
-		center.draw();
+		System.out.println("circle with center: ");
+		getCenter().draw();
+		System.out.print(" and radius: " + getRadius());
 	}
 
 	public Object clone() throws CloneNotSupportedException {
-		
-		Circle1 cloned = (Circle1)super.clone();
-	    cloned.setCenter((Point)cloned.getCenter().clone());
-	    return cloned;
+
+		Circle1 cloned = (Circle1) super.clone();
+		cloned.setCenter((Point) cloned.getCenter().clone());
+		return cloned;
 	}
 }

@@ -8,48 +8,99 @@
 
 1.	Is it possible to define your own generic classes? But generic methods?
 
-    A:
+    A: Yes it is possible to define both.
 
 2.      How do you declare the type parameter(s) for a generic class? But for a method?
 
-    A:
+    A: class MyGenerics<T>{
+    	
+    		private T topic;
+			public Message(T topic) {
+				this.topic = topic;
+			}
+
+			public T getTopic() {
+				return topic;
+			}
+		}
 
 3.      Can you create a generic method in a generic class, where the generic method has a different type parameter than the class? If yes, provide an example.
 
-    A:
+    A:	Yes, I can.
+    
+    	class Message<T> {
+			private T topic;
+			public Message(T topic) {
+				super();
+				this.topic = topic;
+			}
+
+			public T getTopic() {
+				return topic;
+			}
+
+			public <G> int otherType(G other) {
+				return 0;
+			}
+		}
 
 4.      Does Java create multiple types for each invocation of a parameterized type? How many of them?
 
-    A:
+    A:	Yes Java creates an instance of the parametrized type for each invocation, equal to the number of different types.
 
 5.      Can you call a method declared with a type List<Object> with a parameter of type List<String>? If not, how can you make the call legal?
 
-    A:
+    A: No, you can not, it is possible only if you use the wildcard character.
+    
+    public int otherType(List<? extends Object> other){
+		return 0;
+	}
 
 6.      If you use wildcards, can you modify the parameter inside the method call? Why?
 
-    A:
+    A: Yes, because wildcard means any type is accepted.
 
 7.      Explain the following method declaration syntax:
         public static <T extends Comparable<? super T>> void sort(List<T> list)
 
-    A:
+    A: <T extends Comparable<? super T>> this is used to explain what is "T".
+       "T" must be a type that extends Comparable which takes as a generic argument a class which is a super class of T.
         
 8.      When do you use a generic method and when a method with wildcards?
 
-    A:
+    A: Wildcards are used when you want to specify a type which comes from a hierarchy.
+       Type parameters support multiple bounds, wildcards don't. 
 
 9.      Can you call generics code from "old" non-generics code? But non-generics code from generics code?
 
-    A:
+    A: Calling generics code from non-generics code is not possible, however calling non-generics code from generics code works fine.
 
 10.     Can you use statics in generic classes?
 
-    A:
+    A: You can not use static methods in generic classes.
+       The class' type parameters are used for instance methods and instance fields.
 
 11.     Provide two examples where you can get an unchecked warning.
 
     A:
+     Ex1:	
+    	public static void addAssembly(String name, Collection<Part> parts) {...}
+    
+    	Collection c = new ArrayList(); 
+    	c.add(new Guillotine()) ; 
+    	c.add(new Blade());
+    	
+   		// 1: unchecked warning 
+   		Inventory.addAssembly("thingee", c);
+   		
+   	 Ex2: 
+   	    public <T> List<byte[]> getData(T data) { 
+   	    	List<ScanResult> scanRes = (List<ScanResult>) data; // ... 
+   	    }
+   	    
+   	    generates Type safety: Unchecked cast from T to List<ScanResult>  
+   	    You get the warning because the cast (List<ScanResult>) data is not safe. 
+   	    Due to type erasure, List<ScanResult> will be List during runtime
 
 	Problems
 

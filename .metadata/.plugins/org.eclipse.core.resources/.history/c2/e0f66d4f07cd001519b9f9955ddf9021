@@ -1,0 +1,47 @@
+package com.atraxo.homework5;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Ex2 {
+
+	public static void main(String[] args) {
+
+		List<Country> list = new ArrayList<>();
+		list.add(new Country("Romania","Bucuresti"));
+		list.add(new Country("Ungaria","Budapesta"));
+		list.add(new Country("Spania","Madrid"));
+		list.add(new Country("Albania","Something"));
+		list.add(new Country("Uganda","Botswana"));
+		list.add(new Country("France","Paris"));
+		
+		list.sort(Country::compareTo);
+		
+		for(Country c : list)
+			c.print();
+	}
+}
+
+class Country implements Comparable<Country> {
+	 
+	private String name;
+	private String capital;
+	
+	public Country(String name, String capital) {
+		this.name = name;
+		this.capital = capital;
+	}
+
+	@Override
+	public int compareTo(Country country) {
+		
+		Collator collator = Collator.getInstance();
+		return collator.compare(this.name, country.name);
+	}
+	
+	public void print() {
+		System.out.println("country: " + this.name + ", capital: " + this.capital);
+	}
+}

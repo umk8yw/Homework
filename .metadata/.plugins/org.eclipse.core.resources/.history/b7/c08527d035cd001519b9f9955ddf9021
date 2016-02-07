@@ -1,0 +1,66 @@
+---------------------------------------------------------------------------------
+	Collections of Objects
+---------------------------------------------------------------------------------
+
+
+	Questions
+
+
+1.	What are the main differences between an array and an ArrayList? 
+
+	A: ArrayLists can store only object an Arrays only primitives.
+	   Before it is created you can not change the size of an Array, an ArrayList can resize itself when it is needed.
+	   When you create an Array you must specify its size and type, with ArrayList you can use Generics and you do not have to know its size.
+
+2.	There is a good practice in OO programming not to have public attributes. Think of a good reason why the designers of Java have broken this rule and have exposed the length attribute of arrays? 
+
+	A:	
+
+3.	Which of the following are ordered collections and which ones are not:
+a.	HashSet
+b.	TreeSet
+c.	WeakHashMap
+d.	TreeMap
+e.	LinkedList	
+
+	A: Only TreeSet and TreeMap are ordered.
+
+4.	What is an Iterator? What is the difference between an Iterator and an Enumerator?
+
+	A: An iterator is an object of a class that implements the Iterator interface.
+	   It is used to traverse the elements of a collection allowing the user to retrieve the values.
+	   The differences between Iterator and Enumerator are that, the Iterator is newer, it can be used to manipulate(add, remove) elements from a collection.
+	   Enumerator is not supported by all classes from Collection. 
+	   It acts like a read-only interface, allowing only read-only operations like fetch and traverse.
+	
+5.	What is the difference between Collections and Maps?
+
+	A: The difference between Collections and Maps is that the Map interface is a collection of key-value pairs.
+
+6.	Make a comparison between SoftReference and WeakReferences? 
+
+	A: It all depends on the garbage collector, a WeakReference is not strong enough to hold an objects reference in memory.
+	   A SoftReference is just like a WeakReference, but it can keep an objects reference in memory a little more.
+
+7.	How can you obtain a sychronized (thread-safe) version of a LinkedList?
+
+	A:
+
+8.	What specific List would you chose as a container if you would have to perform random removals and wish for the best performance? 
+
+	A:
+
+	Problems
+
+
+1.	Write a program that does the following: 
+a.	creates two ArrayLists each with at least three elements (call them a and b) 
+b.	merges b into a in an interleaved fashion (so if a=[a,b,c] and b=[w,x,y,z], then a becomes [a, w, b, x, c, y, z]) 
+c.	removes every second element from b (so b would become [w,y]) 
+d.	finally removes from a every element that is in b (so a would become [a, b, x, c, z]) 
+
+2.	Create a class Country containing two attributes: Name and Capital, both Strings. Make it Comparable so that the comparison only cares about the country�s name. Fill an ArrayList with objects of your class. Demonstrate that sorting works properly. Now make a Comparator that only cares about the capital and demonstrate that sorting works properly. Perform a binary search for the country whose capital is Paris using your second Comparator.
+
+3.	Write a program to implement a memory sensitive cache.
+
+4.	Write a program illustrating a �publish-subscribe� mechanism using a simple interface and and a Collection.

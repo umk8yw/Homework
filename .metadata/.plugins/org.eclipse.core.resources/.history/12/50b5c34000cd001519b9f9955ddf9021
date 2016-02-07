@@ -1,0 +1,27 @@
+package com.atraxo.homework5;
+
+public class Ex2 {
+
+	public static void main(String[] args) {
+
+		
+	}
+}
+
+class Country implements Comparable<String> {
+	 
+	private String name;
+	private String capital;
+	
+	public Country(String name, String capital) {
+		super();
+		this.name = name;
+		this.capital = capital;
+	}
+
+	@Override
+	public int compareTo(String string) {
+		
+		return 0;
+	}
+}

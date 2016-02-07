@@ -1,0 +1,6 @@
+package com.atraxo.homework6;
+
+public interface Collection<? extends java.util.Collection<?>> {
+	public boolean containsAll(Collection<?> c);
+    public boolean addAll(Collection<T> c);
+}

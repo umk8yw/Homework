@@ -1,0 +1,20 @@
+package com.atraxo.homework5;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+
+public class Ex4 {
+
+	public static void main(String[] args) {
+		
+		Collection<Message> collection = new ArrayList<>();
+		
+		Random random = new Random();
+		random.nextInt(max - min + 1) + min;
+	}
+}
+
+class Message {
+	private int topic;
+}

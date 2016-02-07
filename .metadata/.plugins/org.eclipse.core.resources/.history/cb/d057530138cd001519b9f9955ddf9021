@@ -1,0 +1,99 @@
+---------------------------------------------------------------------------------
+	Generics
+---------------------------------------------------------------------------------
+
+
+	Questions
+
+
+1.	Is it possible to define your own generic classes? But generic methods?
+
+    A: Yes it is possible to define both.
+
+2.      How do you declare the type parameter(s) for a generic class? But for a method?
+
+    A: class MyGenerics<T>{
+    	
+    		private T topic;
+			public Message(T topic) {
+				this.topic = topic;
+			}
+
+			public T getTopic() {
+				return topic;
+			}
+		}
+
+3.      Can you create a generic method in a generic class, where the generic method has a different type parameter than the class? If yes, provide an example.
+
+    A:
+
+4.      Does Java create multiple types for each invocation of a parameterized type? How many of them?
+
+    A:
+
+5.      Can you call a method declared with a type List<Object> with a parameter of type List<String>? If not, how can you make the call legal?
+
+    A:
+
+6.      If you use wildcards, can you modify the parameter inside the method call? Why?
+
+    A:
+
+7.      Explain the following method declaration syntax:
+        public static <T extends Comparable<? super T>> void sort(List<T> list)
+
+    A:
+        
+8.      When do you use a generic method and when a method with wildcards?
+
+    A:
+
+9.      Can you call generics code from "old" non-generics code? But non-generics code from generics code?
+
+    A:
+
+10.     Can you use statics in generic classes?
+
+    A:
+
+11.     Provide two examples where you can get an unchecked warning.
+
+    A:
+
+	Problems
+
+
+1.	Consider the following:
+
+    interface Sink<T> { 
+        flush(T t); 
+    }
+
+    Imagine using it as demonstrated by the code below.
+
+    public static <T> T writeAll(Collection<T> coll, Sink<T> snk){ 
+        T last;
+        for (T t : coll) { 
+            last = t;
+            snk.flush(last);
+        }
+        return last;
+    }
+    ...
+    Sink<Object> s;
+    Collection<String> cs;
+    String str = writeAll(cs, s);
+    
+    
+    Is the code legal? If yes, why? If not, fix it.
+    
+    
+2.      Transform the following code to use generics:
+
+    interface Collection { 
+        public boolean containsAll(Collection c);
+        public boolean addAll(Collection c);
+    }
+
+3.      Write a generic function to sort any collections using bubble sort.
