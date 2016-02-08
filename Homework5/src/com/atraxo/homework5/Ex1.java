@@ -23,12 +23,14 @@ public class Ex1 {
 		print(a);
 		System.out.println("------");
 
-		b.removeIf(new Predicate<Integer>() {
-			@Override
-			public boolean test(Integer t) {
-				return b.indexOf(t) % 2 != 0;
-			}
-		});
+//		b.removeIf(new Predicate<Integer>() {
+//			@Override
+//			public boolean test(Integer t) {
+//				return b.indexOf(t) % 2 != 0;
+//			}
+//		});
+		
+		b.removeIf(t -> {return b.indexOf(t) % 2 != 0;});	
 		print(b);
 		System.out.println("------");
 
