@@ -1,0 +1,46 @@
+package com.atraxo.homework3;
+
+interface Iterator {
+	
+	boolean hasNext();
+	Object next();
+}
+
+public class Map {
+	private String[] directions = {"North", "East", "South", "West"};
+	
+	public void foo(Iterator it){
+		while(it.hasNext())
+			System.out.println(it.next());
+	}
+	
+	public void walk(){
+		foo(new Iterator() {
+			
+			int index = 0;
+			
+			@Override
+			public Object next() {
+				
+				return hasNext() ? directions[index++] : null;
+			}
+			
+			@Override
+			public boolean hasNext() {
+				//[ZP] ????????
+				return (index >= directions.length     ? 
+						false                          : 
+							(directions[index] != null ?
+									true : false));
+			}
+		});
+	}
+}
+
+class StartMap{
+	
+	public static void main(String[] args){
+		Map map = new Map();		
+		map.walk();
+	}
+}
