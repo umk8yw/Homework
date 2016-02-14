@@ -10,11 +10,21 @@ b.	To list all the files with java extension in a directory, a FilenameFilter cl
 c.	A File object can represent both a file and directory
 d.	Using the File class is possible to look at the characteristics of files
 
+	A: b, c, d
+
 2.	Which is the base class of decorators for classes having as base class the InputStream?
+
+	A: The base class of decorators is InputStream.
 
 3.	What is the main difference between PrintStream and DataOutputStream classes?
 
+	A: PrintStream prints character data and DataOutputStream outputs binary data.
+
 4.	Is it possible to do random access file using InputStream classes?
+
+	A: No, the only constructors of RandomAccessFile are:
+			- RandomAccessFile(File file, String mode);
+			- RandomAccessFile(String name, String mode);
 
 5.	Check the next code snippet for correctness:
     // 1. Reading input by lines:
@@ -25,12 +35,25 @@ d.	Using the File class is possible to look at the characteristics of files
     while((s = in.readLine())!= null)
       s2 += s + "\n";
     in.close();
+    
+    A: BufferedReader in = new BufferedReader(new FileReader("IOStreamDemo.java"));
+	   String s, s2 = new String();
+	   while ((s = in.readLine()) != null)
+			s2 += s + "\n";
+       in.close();
+    The constructor of BufferedReader can not take as arguments a FileInpuStream type.
 
 6.	Which class is used to add a new file to a zip archive? 
 
+    A: To add a new entry the ZipOutputStream is used to call putNextEntry which takes as parameter a ZipEntry type.
+
 7.	How the serialization of a class can be customized in order to avoid the default serialization?
 
+    A: For customizing the serialization of a class, it should implement the Externalizable interface and override the readExternal and writeExternal methods.
+
 8.	What is the difference in the construction of a Serializable and an Externalizable object during the serialization?
+
+    A: A serializable object will be subject to default serialization whilst an externalizable object fist calls the readExternal and writeExternal methods.
 
 9.	 What is weird in the next class:
 public class Account implements Externalizable {
@@ -53,7 +76,11 @@ public class Account implements Externalizable {
     }
 }
 
+    A: The transient word is useless.
+
 10.	With which kind of objects is working the StreamTokenizer class?
+
+    A: the StreamTokenizer class works with any type of InputStream or Reader.
 
 11.	Which of the following classes can produce a FileChannel:
 a. ByteArrayInputStream
@@ -62,7 +89,11 @@ c. RandomAccessFile
 d. InputStreamReader
 e. FilterOutputStream
 
+    A: b, c
+
 12.	Can Reader and Writer character-mode classes interoperate with channels? How?
+
+    A: The Reader and Writer classes do not produce channels, but the Channels class has utility methods to produce Readers and Writers from channels. 
 
 13.	Make the appropriate changes to the code below to correctly copy a source file to a destination file and explain your changes.
 
@@ -73,6 +104,18 @@ e. FilterOutputStream
 			out.write(buffer);
 			buffer.clear();
 		}
+		
+	A: 	FileChannel in = new FileInputStream(args[0]).getChannel();
+		FileChannel out = new FileOutputStream(args[1]).getChannel();
+		ByteBuffer buffer = ByteBuffer.allocate(1024);
+		in.read(buffer);
+		buffer.flip();
+		out.write(buffer);
+		buffer.clear();
+		in.close();
+		out.close();
+		
+		The cursor of the buffer should be set at the begging of it, and than all the characters from the buffer are written in the file.
 
 14.	What is wrong in the code below:
     private static final int SIZE = 1024;
@@ -80,7 +123,7 @@ e. FilterOutputStream
 
     public static void main(String[] args) throws Exception {
         FileChannel fc = new FileOutputStream(FILE_NAME).getChannel();
-        fc.write(CharBuffer.wrap("Content of a simple file. Persönliche Informationen.".toCharArray()));
+        fc.write(CharBuffer.wrap("Content of a simple file. Persï¿½nliche Informationen.".toCharArray()));
         fc.close();
         fc = new FileInputStream(FILE_NAME).getChannel();
         ByteBuffer buff = ByteBuffer.allocate(SIZE);
@@ -91,10 +134,30 @@ e. FilterOutputStream
     }
 Make the appropriate changes so that the code will correctly write and read the content of a simple file.
 
+	A:  private static final int SIZE = 1024;
+		private static final String FILE_NAME = "simpleFile.txt";
+
+		public static void main(String[] args) throws IOException {
+
+		FileChannel fc = new FileOutputStream(FILE_NAME).getChannel();
+		Charset cs = Charset.forName("UTF-8");
+		ByteBuffer buffer = cs.encode(CharBuffer.wrap("Content of a simple file. Persnliche Informationen."));
+		fc.write(buffer);
+		fc.close();
+
+		fc = new FileInputStream(FILE_NAME).getChannel();
+		ByteBuffer buff = ByteBuffer.allocate(SIZE);
+		fc.read(buff);
+		buff.flip();
+		while (buff.hasRemaining())
+			System.out.print((char) buff.get());
+		fc.close();
+	}
+
 15. What is a View Buffer? Explain for what it should be used.
 
-
-
+	A:  View Buffer allows a ByteBuffer to be viewed as a buffer containing values of primitive types.
+		It allows you to insert or read primitive types from a ByteBuffer. 
 
 Problems
 
