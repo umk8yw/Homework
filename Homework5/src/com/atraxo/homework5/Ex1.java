@@ -2,8 +2,8 @@ package com.atraxo.homework5;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
+//[ZP] - 10
 public class Ex1 {
 
 	public static void main(String[] args) {

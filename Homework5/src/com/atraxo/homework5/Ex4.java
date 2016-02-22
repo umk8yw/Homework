@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
+//[ZP] - 10
 public class Ex4 {
 
 	public static void main(String[] args) {

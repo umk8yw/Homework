@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
+//[ZP] - 10
 public class Ex3 {
 
 	public static void main(String[] args) throws IOException {

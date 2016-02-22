@@ -1,5 +1,6 @@
 package com.atraxo.homework4;
 
+//[ZP] 7- more attention please. 
 public class Part2Ex1 {
 
 	public static void main(String[] args) {
@@ -18,8 +19,11 @@ public class Part2Ex1 {
 
 		Shape1 shape = new Shape1(circle, line);
 		try {
+			System.out.println("Shape line before clone: " + shape.getLine());
 			Shape1 cloned = (Shape1) shape.clone();
-			cloned.draw();
+//			cloned.draw();
+			System.out.println("Shape line after clone: " + shape.getLine());
+			System.out.println("Cloned line after clone: " + cloned.getLine());
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
@@ -48,6 +52,16 @@ class Shape1 implements Cloneable {
 		circle = (Circle1) circle.clone();
 		return cloned;
 	}
+
+	public Circle1 getCircle() {
+		return circle;
+	}
+
+	public Line getLine() {
+		return line;
+	}
+	
+	
 }
 
 class Point implements Cloneable {

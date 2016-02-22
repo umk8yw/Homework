@@ -2,7 +2,9 @@ package com.atraxo.homework6;
 
 import java.util.ArrayList;
 
+//[ZP] - something went wrong the list is not ordered
 public class Ex3 {
+
 
 	public <T extends Comparable<? super T>> java.util.Collection<T> bubbleSort(java.util.Collection<T> toSort) {
 		for (T elem : toSort) {
@@ -29,6 +31,7 @@ public class Ex3 {
 		java.util.Collection<String> ret = obj.bubbleSort(myColl);
 
 		System.out.println(ret);
+		System.out.println(myColl);
 		java.util.Collection<Integer> retInt = obj.bubbleSort(myIntColl);
 	}
 }

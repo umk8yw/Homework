@@ -8,7 +8,7 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-
+//[ZP] - 6
 public class Ex2a {
 
 	public static void main(String[] args) {
@@ -75,6 +75,7 @@ class Account1 implements Externalizable {
 		this.password = password;
 	}
 
+	//[ZP] - deserialization
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 
@@ -82,10 +83,12 @@ class Account1 implements Externalizable {
 //		password = (String) in.readObject();
 	}
 
+	//[ZP] - serialization
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
 
 		out.writeInt(id);
+		//[ZP] - why??????
 		out.writeObject(password);
 	}
 }

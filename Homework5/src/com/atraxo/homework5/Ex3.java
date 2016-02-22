@@ -10,12 +10,13 @@ import objectexplorer.MemoryMeasurer;
 // I understood that they represent Hashmaps with a weak reference to an object, mapped to a key.
 // To prove the operation of WeakHashMap I used objectexplorer.MemoryMeasurer, 
 // which is available at https://github.com/DimitrisAndreou/memory-measurer.git
-
+//[ZP] - without library cannot compile :((
 public class Ex3 {
 
 	public static void main(String[] args) throws IOException {
 
 		Map<Integer, String> StringCache = new WeakHashMap<>();
+		//[ZP] - do you really need the String constructor. Please read java doc of the constructor
 		StringCache.put(1, new String("Lorem Ipsum dolor sit amet"));
 		StringCache.put(2, new String(
 				"consectetur adipiscing elit. Fusce quis nibh quis eros sagittis dignissim. Maecenas tristique id ante vitae pharetra. Praesent quis ultrices mi. Vestibulum mattis commodo facilisis. In ultricies feugiat magna aliquam ullamcorper. Phasellus id dignissim mauris. Nullam viverra lorem id quam tempor, eget efficitur ipsum dictum. Morbi tristique sagittis lectus eu lacinia. Nullam tincidunt, sem a suscipit ullamcorper, dolor velit commodo sapien, eget venenatis leo libero eu odio. Mauris ut enim at turpis dapibus finibus ac in augue."));

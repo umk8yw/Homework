@@ -11,21 +11,26 @@ c.	A File object can represent both a file and directory
 d.	Using the File class is possible to look at the characteristics of files
 
 	A: b, c, d
+[ZP] - 10
 
 2.	Which is the base class of decorators for classes having as base class the InputStream?
 
 	A: The base class of decorators is InputStream.
+[ZP] - 0 - The classes that provide the decorator interface to control a particular
+InputStream or OutputStream are the FilterlnputStream and
+FilterOutputStream
 
 3.	What is the main difference between PrintStream and DataOutputStream classes?
 
 	A: PrintStream prints character data and DataOutputStream outputs binary data.
+[ZP] 6 Printstream for producing formatted output. While DataOutputStream handles the storage of data, PrintStream handles display.
 
 4.	Is it possible to do random access file using InputStream classes?
 
 	A: No, the only constructors of RandomAccessFile are:
 			- RandomAccessFile(File file, String mode);
 			- RandomAccessFile(String name, String mode);
-
+[ZP] - 10
 5.	Check the next code snippet for correctness:
     // 1. Reading input by lines:
     BufferedReader in =
@@ -42,18 +47,22 @@ d.	Using the File class is possible to look at the characteristics of files
 			s2 += s + "\n";
        in.close();
     The constructor of BufferedReader can not take as arguments a FileInpuStream type.
+[ZP] - 10
 
 6.	Which class is used to add a new file to a zip archive? 
 
     A: To add a new entry the ZipOutputStream is used to call putNextEntry which takes as parameter a ZipEntry type.
+[ZP] 10
 
 7.	How the serialization of a class can be customized in order to avoid the default serialization?
 
     A: For customizing the serialization of a class, it should implement the Externalizable interface and override the readExternal and writeExternal methods.
+[ZP] 5 or?
 
 8.	What is the difference in the construction of a Serializable and an Externalizable object during the serialization?
 
     A: A serializable object will be subject to default serialization whilst an externalizable object fist calls the readExternal and writeExternal methods.
+[ZP] - 0 - "contruction" of the object - in case on Externalizable object the default constructor is called
 
 9.	 What is weird in the next class:
 public class Account implements Externalizable {
@@ -78,9 +87,12 @@ public class Account implements Externalizable {
 
     A: The transient word is useless.
 
+[ZP] - 10
 10.	With which kind of objects is working the StreamTokenizer class?
 
     A: the StreamTokenizer class works with any type of InputStream or Reader.
+
+[ZP] 10
 
 11.	Which of the following classes can produce a FileChannel:
 a. ByteArrayInputStream
@@ -91,10 +103,13 @@ e. FilterOutputStream
 
     A: b, c
 
+[ZP] - 10
+
 12.	Can Reader and Writer character-mode classes interoperate with channels? How?
 
     A: The Reader and Writer classes do not produce channels, but the Channels class has utility methods to produce Readers and Writers from channels. 
 
+[ZP] - 10 
 13.	Make the appropriate changes to the code below to correctly copy a source file to a destination file and explain your changes.
 
 	FileChannel in = new FileInputStream(args[0]).getChannel();
@@ -102,7 +117,7 @@ e. FilterOutputStream
 		ByteBuffer buffer;
 		while(in.read(buffer) != -1) {
 			out.write(buffer);
-			buffer.clear();
+			buffer.clear();1024
 		}
 		
 	A: 	FileChannel in = new FileInputStream(args[0]).getChannel();
@@ -116,6 +131,7 @@ e. FilterOutputStream
 		out.close();
 		
 		The cursor of the buffer should be set at the begging of it, and than all the characters from the buffer are written in the file.
+[ZP] - 8 you will copy only 1 kb of data
 
 14.	What is wrong in the code below:
     private static final int SIZE = 1024;
@@ -153,12 +169,13 @@ Make the appropriate changes so that the code will correctly write and read the 
 			System.out.print((char) buff.get());
 		fc.close();
 	}
+[ZP] - 10
 
 15. What is a View Buffer? Explain for what it should be used.
 
 	A:  View Buffer allows a ByteBuffer to be viewed as a buffer containing values of primitive types.
 		It allows you to insert or read primitive types from a ByteBuffer. 
-
+[ZP] 10
 Problems
 
 1.	Create a code to open a text file and read the file one line at a time.

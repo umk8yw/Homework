@@ -9,6 +9,7 @@
 1.	Is it possible to define your own generic classes? But generic methods?
 
     A: Yes it is possible to define both.
+[ZP] 10
 
 2.      How do you declare the type parameter(s) for a generic class? But for a method?
 
@@ -24,6 +25,7 @@
 			}
 		}
 
+[ZP] - 5 and how do you declare for a method
 3.      Can you create a generic method in a generic class, where the generic method has a different type parameter than the class? If yes, provide an example.
 
     A:	Yes, I can.
@@ -43,10 +45,12 @@
 				return 0;
 			}
 		}
+[ZP] 10
 
 4.      Does Java create multiple types for each invocation of a parameterized type? How many of them?
 
     A:	Yes Java creates an instance of the parametrized type for each invocation, equal to the number of different types.
+[ZP] - 0 - and how many types?
 
 5.      Can you call a method declared with a type List<Object> with a parameter of type List<String>? If not, how can you make the call legal?
 
@@ -55,31 +59,49 @@
     public int otherType(List<? extends Object> other){
 		return 0;
 	}
+[ZP] - 10
 
 6.      If you use wildcards, can you modify the parameter inside the method call? Why?
 
     A: Yes, because wildcard means any type is accepted.
+
+[ZP] - 
 
 7.      Explain the following method declaration syntax:
         public static <T extends Comparable<? super T>> void sort(List<T> list)
 
     A: <T extends Comparable<? super T>> this is used to explain what is "T".
        "T" must be a type that extends Comparable which takes as a generic argument a class which is a super class of T.
+
+[ZP] 2 - metoda poate fi apelate pentru orice tip comparabil direct sau indirect. 
+Ex: class Fruit implements Comparable<Fruit> {
+    }
+    class Apple extends Fruit{}
+    ....
+    List<Apple> list = new ArrayList<Apple>();
+    
+    T - Apple
+    Comparable este Fruit ce este super de Apple
+
         
 8.      When do you use a generic method and when a method with wildcards?
 
     A: Wildcards are used when you want to specify a type which comes from a hierarchy.
        Type parameters support multiple bounds, wildcards don't. 
 
+[ZP] 5- and when we use generic methods
+
 9.      Can you call generics code from "old" non-generics code? But non-generics code from generics code?
 
     A: Calling generics code from non-generics code is not possible, however calling non-generics code from generics code works fine.
+
+[ZP] - 5 why is not possible?
 
 10.     Can you use statics in generic classes?
 
     A: You can not use static methods in generic classes.
        The class' type parameters are used for instance methods and instance fields.
-
+[ZP] 10
 11.     Provide two examples where you can get an unchecked warning.
 
     A:
@@ -102,6 +124,7 @@
    	    You get the warning because the cast (List<ScanResult>) data is not safe. 
    	    Due to type erasure, List<ScanResult> will be List during runtime
 
+[ZP] - 5
 	Problems
 
 

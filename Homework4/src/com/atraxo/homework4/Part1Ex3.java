@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
+//[ZP] - 8 - where are you set the hidden field?
 public class Part1Ex3 {
 
 	public static void main(String[] args) {

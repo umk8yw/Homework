@@ -1,5 +1,7 @@
 package com.atraxo.homework4;
 
+//[ZP] - where is the mutable companion class technique? String is immutable, he has mutable companion class StringBuilder
+//[ZP] - 5
 public class Part2Ex2 {
 
 	public static void main(String[] args) {

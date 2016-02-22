@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
+//[ZP] - 10
 public class Ex5 {
 
 	public static void main(String[] args) {

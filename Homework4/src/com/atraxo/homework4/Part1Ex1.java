@@ -11,6 +11,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+//[ZP] - 10
 public class Part1Ex1 {
 
 	void readFile() {

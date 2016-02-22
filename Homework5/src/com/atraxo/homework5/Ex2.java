@@ -2,9 +2,11 @@ package com.atraxo.homework5;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+//[ZP] - 7
 public class Ex2 {
 
 	public static void main(String[] args) {
@@ -27,7 +29,9 @@ public class Ex2 {
 		
 		System.out.println("------------------------------------");
 		
-		Country paris = new Country(null, "Paris");
+		Country paris = new Country("France", "Paris");
+		//[ZP] - you should use Collections.binarysearch
+		System.out.println("find at position: " + Collections.binarySearch(list, paris));
 		System.out.println(Country.find(list, paris));
 	}
 }

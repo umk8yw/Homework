@@ -2,7 +2,7 @@ package com.atraxo.homework6;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+//[ZP] - 10
 public class Ex1 {
 	static Sink<Object> s;
     static Collection<String> cs;
