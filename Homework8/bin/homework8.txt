@@ -1,0 +1,76 @@
+-------------------------------------
+	Concurrency
+-------------------------------------
+
+ 
+	Questions
+
+
+1.	How can you create a thread?
+
+	A: There are two ways to create a thread:
+		- implement the Runnable interface
+		- extend the Thread class
+
+2.	Can a program terminate in case some of its threads are still running?
+
+	A: Yes, it can, only if the running threads are daemon threads.
+	   Daemon threads are killed when the application stops.
+
+3.	How can you wait for another thread to complete?
+
+	A: When the join() method is called on a thread, the caller thread will wait until it will finish.
+
+4.	Which lock is shared by two synchronized methods of a class?
+
+	A: The implicit monitor lock is used when two methods are declared as synchronized. 
+
+5.	Which are the reasons for a thread to be blocked?
+
+	A: A thread is blocked if it waits for a monitor lock.
+	   (another thread has the lock)
+	   Threads may also be blocked by a Selector.
+
+6.	How can you stop a thread?
+
+	A: For stopping a thread the following methods can be used: 
+		- destroy() (deprecated)
+		- stop() (deprecated)
+		- suspend() (deprecated)
+		- interrupt()
+		
+	  But neither of them is safe. The best way of stopping a thread is by making it to stop itself using a flag.
+
+7.	Which are the differences between wait and sleep?
+
+	A: wait() method makes a thread to wait until it gets a notification from notify() or notifyAll() method from another thread.
+	   sleep() method makes a thread to stop its execution for a predefined time set as a parameter of the method.
+
+8.	Which are the differences between wait and calling a synchronized method (or entering a synchronized block)?
+
+	A: synchronize() and the wait-notify mechanism are not different ways of doing the same thing. 
+	   Wait-notify depends on synchronization. 
+	   The first is an implementation of a mutex, and the second is a implementation of a condition variable. 
+
+9.	How can you stop a thread from waiting?
+
+	A: If you want to stop a thread from waiting you have to call the notify() method from other thread.
+	   If you want to stop a thread which is waiting you have to call the interrupt() method from other thread.
+
+10.	What is a race condition?
+
+	A: A race condition occurs when the result of a block of code depends on the relative timing or interleaving of multiple threads. 
+ 
+
+	Problems
+
+
+1.	Create an example where there are two synchronized sections in a class and they still can be run in parallel.
+
+2.	Prove that the example Restaurant does not work correctly in case there is more than one waiter in the restaurant
+
+	 --> Restaurant.java
+
+3.	Solve a single producer, single consumer problem using wait( ) and notify( ). The producer must not overflow the receiver's buffer, which can happen if the producer is faster than the consumer. If the consumer is faster than the producer, then it must not read the same data more than once. Do not assume anything about the relative speeds of the producer or consumer. 
+
+4.	Modify Restaurant.java so that multiple WaitPersons generate order requests to multiple Chefs, who produce orders and notify the WaitPerson who generated the request. You�ll need to use queues for both incoming order requests and outgoing orders.
