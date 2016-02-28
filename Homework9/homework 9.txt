@@ -1,0 +1,88 @@
+-------------------------------------
+	Discovering problems
+-------------------------------------
+
+
+	Questions
+
+
+1.	Describe the steps that should be followed in order to create a JUnit test to test a given class.
+
+	A: For a given class you should create a class with the same name but with adding the word "Test" and annotate it with @Test.
+	   Then, for each method from the given class create methods in the Test class, also annotated with @Test.
+	   In every Test method you check the functionality from the given class,
+	   by giving a certain input (variables set in setUp() method) and comparing the expected output with the actual one.
+	   
+	   The steps are: 
+	   	1. implement a subclass of TestCase
+		2. define instance variables that store the state of the fixture
+		3. initialize the fixture state by overriding setUp()
+		4. clean-up after a test by overriding tearDown().
+
+2.	Explain how can one run a single test in the static way. Give a small example.
+
+	A: For running a test in static way you have to override the runTest() method from TestCase, and call the method from a main class.
+		ex: test package from Homework9 project 
+
+3.	What should be done in a Unit test class to be sure that all the test methods can be run by a simple main call?
+
+	A: to be sure that all the test methods can be run by a simple main call, you hate to collect all of them into a TestSuite, and call the suite() method in main.
+
+4.	How can one define properties to be used in Ant build files? How can the properties be used in the value of task attributes?
+
+	A: Properties are defined using the property keyword, which has two parameters: 
+		<property name="propertyName" value="propertyValue" />
+	   After defining them the properties can be used with the following syntax: ${propertyName} 
+
+5.	Explain the Ant path-like structures.
+
+	A: If you are building a Java application and you need to include some jars, you would use something like this:
+		<classpath id="id">
+  			<fileset dir="jarsPath">
+    			<include name="**/*.jar">
+  			</fileset>
+		</classpath>
+	   This means that in the application all jars from the directory and subdirectories declared ar "jarsPath" will be used.
+	   And the collection of jar files will be given an id called "id".
+	   
+	   Another path-like structure is:
+	   	<pathelement location="classes" />
+	   	<pathelement path="${classpath}"/>
+	   which assumes that all Java source files will be compiled into a directory named "classes" and therefore it includes those class files in the classpath.
+	  
+	   The location attribute specifies a single file or directory relative to the project's base directory (or an absolute filename), 
+	   while the path attribute accepts colon- or semicolon-separated lists of locations.
+	   
+
+6.	Explain how can the default log4j initialization procedure be used.
+
+	A: To use the logger you have to ask for a logger instance using the getLogger static method.
+	   This takes as parameter the class where the logger is used.
+		ex: Logger logger = Logger.getLogger(MyClass.class);
+
+7.	How can you get the �root� logger?
+
+	A: The root logger is anonymous but can be accessed with the Logger.getRootLogger() method.
+
+8.	What types of configuration files are supported by log4j? Which are the configurators available for each supported type?
+
+	A: You can configure the logger within a .property file, a .xml file, you can use the default configuration, or you can create your own logger configurator.
+	   The available configurators are: DefaultLF5Configurator, DOMConfigurator, PropertyConfigurator, ReloadingPropertyConfigurator.
+	   These are the classes that implement Interface Configurator. 
+
+
+	Problems
+
+
+1.	Create a Triangle class. The class attributes represent the length of the triangle�s sides. The class is able to determine the type of the triangle: scalene, isosceles and equilateral.  Write a unit test that you feel adequately to test this class.
+
+	--> package com.atraxo.homework9.ex1
+
+2.	Create a simple test project containing the following modules:
+- common - place in this module a class responsible to initialize log4j and to hide the log4j details from all other project code
+- math - place here in an appropriate package (e.g. com.iquest.university.math.geometry) the Triangle class
+
+In the Triangle class use the log4j wrapper you defined in common.
+Add a new source path to the math module (e.g. test) and place here the Triangle unit test.
+Create the ant build scripts responsible to compile each module, build jar files for each module, compile unit tests, run the unit tests for each module and place all unit test results in a single place.
+
