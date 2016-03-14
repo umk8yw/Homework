@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Restaurant_Modified {
-	Meal meal;
+	ModMeal meal;
 	  ExecutorService exec = Executors.newCachedThreadPool();
 	  WaitPerson waitPerson = new WaitPerson(this);
 	  WaitPerson otherPerson = new WaitPerson(this);
@@ -18,18 +18,18 @@ public class Restaurant_Modified {
 	    exec.execute(waitPerson);
 	  }
 	  public static void main(String[] args) {
-	    new Restaurant();
+	    new Restaurant_Modified();
 }
 
 class ModMeal {
 	  private final int orderNum;
-	  public Meal(int orderNum) { this.orderNum = orderNum; }
+	  public ModMeal(int orderNum) { this.orderNum = orderNum; }
 	  public String toString() { return "Meal " + orderNum; }
 	}
 
 	class WaitPerson implements Runnable {
-	  private Restaurant restaurant;
-	  public WaitPerson(Restaurant r) { restaurant = r; }
+	  private Restaurant_Modified restaurant;
+	  public WaitPerson(Restaurant_Modified r) { restaurant = r; }
 	  public void run() {
 	    try {
 	      while(!Thread.interrupted()) {
@@ -50,9 +50,9 @@ class ModMeal {
 	}
 
 	class Chef implements Runnable {
-	  private Restaurant restaurant;
+	  private Restaurant_Modified restaurant;
 	  private int count = 0;
-	  public Chef(Restaurant r) { restaurant = r; }
+	  public Chef(Restaurant_Modified r) { restaurant = r; }
 	  public void run() {
 	    try {
 	      while(!Thread.interrupted()) {
@@ -66,7 +66,7 @@ class ModMeal {
 	        }
 	        printnb("Order up! ");
 	        synchronized(restaurant.waitPerson) {
-	          restaurant.meal = new Meal(count);
+	          restaurant.meal = new ModMeal(count);
 	          restaurant.waitPerson.notifyAll();
 	          restaurant.otherPerson.notifyAll();
 	        }
@@ -77,3 +77,4 @@ class ModMeal {
 	    }
 	  }
 	}
+}

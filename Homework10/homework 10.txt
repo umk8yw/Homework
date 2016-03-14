@@ -1,0 +1,96 @@
+-------------------------------------
+	Network programming
+-------------------------------------
+
+	Questions
+
+1.	Explain the following concepts: server, client, internet address, port and socket.
+
+	A: A socket is an abstraction that you use to talk to something across the network.
+
+2.	Write a short program to get the IP address of the local host.
+
+	A: 
+
+3.	What is a stream? Explain and give a short example (java code) of working with sockets as stream.
+
+	A: To send data via the socket, you get an OutputStream (1) from it, and write to the OutputStream (you output some data).
+	   To read data from the socket, you get its InputStream, and read input from this second stream.
+	   A stream can be thought of as a pair of one-way pipes connected to a socket on the wall. 
+	   The server has another socket (the other end of the connection) and another pair of streams. 
+	   It uses its InputStream (2) to read from the network, and its OutputStream (3) to write the same data back across the network to the client, 
+	   which reads it again via its InputStream (4) completing the round trip.
+
+      	  Client                                                     Server
+
+	1. OutputStream -->\                                   /--> 2. InputStream -->
+       	                Socket<--->network<--->ServerSocket                       |
+	4. InputStream  <--/                                   \<-- 3. OutputStream <--
+	
+	ex: 
+		Socket socket = new Socket(hostName, portNumber);
+		    PrintWriter out =
+		        new PrintWriter(socket.getOutputStream(), true);
+		    BufferedReader in =
+		        new BufferedReader(
+		            new InputStreamReader(socket.getInputStream()));
+
+4.	Write a small server that listens on a port supplied as a parameter in the command line, and exits once a client connects.
+
+	--> com.atraxo.homework10.question4 package
+
+5.	How can you treat multiple clients in a Socket based distributed application?
+
+	A: The term "distributed application" means that parts of the application system will execute on different computational nodes 
+	   (which may be different CPU/cores on different machines or among multiple CPU/cores on the same machine).
+	   For treating multiple clients you have to call accept() method repeatedly for all the clients.
+	   accept() will return a new socket which will be used to handle requests from the client.
+
+6.	What is the difference between TCP and UDP? Give examples of when to use TCP and when UDP. Name java classes that we must use in order to work with TCP, respectively with UDP. 
+
+	A: 			       TCP                     |                UDP
+		---------------------------------------|-----------------------------------------
+		 - connection-oriented protocol        | - connectionless protocol
+		                                       |
+		 - suited for applications that require| - suitable for applications that need  
+		   high reliability, and transmission  |   fast, efficient transmission, such 
+		   time is relatively less critical    |   as games. UDP's stateless nature is 
+		                                       |   also useful for servers that answer  
+		                                       |   small queries from huge numbers of clients
+		                                       |
+		 - guarantee that the data transferred | - no guarantee that the messages or packets 
+		   remains intact and arrives in the   |   sent would reach at all
+		   same order in which it was sent     |
+
+		We should use TCP when we need high reliability and we are not constrained by the transmission time, 
+		and we should use UDP when we need a fast transmission or if we have many clients.
+
+		ServerSocket socket = new ServerSocket(<port>) --> opens a ServerSocket on TCP
+		socket.accept() --> blocks until a connection is received
+		Socket socket = new Socket(<host>, <port>) --> opens a Socket on TCP
+		
+		DatagramSocket datagramSocket = new DatagramSocket(<port>) --> opens a Socket on UDP 
+		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length) --> creates a Datagram packet which can be sent over the Socket
+
+		UDP ex: com.atraxo.homework10.UDP
+		
+
+	Problems
+
+
+1.	Write a simple distributed application with a server and a single client that sends lines of text (from the user input) to the server, and the server returns the reversed line back to the client (where it must be displayed).
+
+	--> com.atraxo.homework10.Ex1 package
+
+2.	Write a distributed application with a server and multiple clients that implements the following communication protocol:
+Client: �ping�
+Server: �pong�
+Client: �who�s there?�
+Server: �I am the server�
+Server: �who are you?�
+Client: �I am the client�
+
+	--> com.atraxo.homework10.Ex2 package
+
+3.	Write a chat program that supports multiple clients (all clients can see all messages).
+4.	Write an application that allows remote computers to get the atomic time from a time server. Bonus: implement a mechanism to determine the delays in the network.

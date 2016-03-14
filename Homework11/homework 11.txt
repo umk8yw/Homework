@@ -1,0 +1,20 @@
+-------------------------------------
+	RMI
+-------------------------------------
+
+	Questions
+
+1.	Which is the basic difference between the RPC (Remote Procedure Call) and RMI?
+2.	Which is the difference between the methods Naming.bind and Naming.rebind?
+3.	Is it possible to start programmatically the registry? If yes, which is the difference between starting it manually and starting it programmatically?
+4.	If the client of an RMI object is on another machine then where the object, the stub and skeleton code will run?
+5.	What is wrong in the next remote interface definition:
+	public interface PerfectTimeI extends Remote {
+  	     long getPerfectTime();
+        }
+
+
+	Problems
+
+1.	Write a code snippet for a client side lookup of an arbitrary remote interface.
+2.	Write the remote interface and the implementation class for a remote object which provides the possibility to authorize a user using an id and a password, also provide the registration code of the remote object. The authorization should succeed always for simplicity.
