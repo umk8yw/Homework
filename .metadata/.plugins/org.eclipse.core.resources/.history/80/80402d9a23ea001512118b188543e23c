@@ -1,0 +1,25 @@
+package com.atraxo.homework10.Ex4;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.Socket;
+
+public class TimeServer {
+
+	public static void main(String[] a) {
+		if (a.length!=1) {
+		      System.out.println("usage: java AskTime <systemname> ");
+		      System.exit(0);
+		    }
+
+		    String machine = a[0];
+		    final int daytimeport = 13;
+		    Socket so = new Socket(machine, daytimeport);
+		    BufferedReader br =
+		        new BufferedReader( new InputStreamReader( 
+							so.getInputStream() ) );
+		    String timestamp = br.readLine();
+		    System.out.println( machine + " says it is " + timestamp );
+		  }
+	}
+}

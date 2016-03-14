@@ -1,0 +1,58 @@
+package com.atraxo.homework10.Ex3;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+
+public class ChatClient {
+
+	Socket socket;
+	
+	ChatClient() {
+		try {
+			socket = new Socket("localhost", 6543);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("~~~~~~~~~~~~ START CHAT ~~~~~~~~~~~~");
+		
+		
+	}
+	
+	void runThread(){
+		
+	}
+	
+	void runClient(){
+		try (
+				PrintStream printStream = new PrintStream(socket.getOutputStream())) {
+			
+			Thread thread = new Thread(() -> {
+				while (true)
+					try {
+						BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+						System.out.println("\n" + br.readLine());
+						System.out.print(socket.getPort() + " : ");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+			});
+			
+			thread.start();
+			
+			while (true) {
+				BufferedReader toSendReader = new BufferedReader(new InputStreamReader(System.in));
+				System.out.print(socket.getPort() + " : ");
+				String toSend = toSendReader.readLine();
+				printStream.println(toSend);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

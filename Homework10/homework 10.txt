@@ -93,4 +93,9 @@ Client: �I am the client�
 	--> com.atraxo.homework10.Ex2 package
 
 3.	Write a chat program that supports multiple clients (all clients can see all messages).
+
+  --> just run runMe.bat and start chatting :)
+
 4.	Write an application that allows remote computers to get the atomic time from a time server. Bonus: implement a mechanism to determine the delays in the network.
+
+  --> TimeServer.java 

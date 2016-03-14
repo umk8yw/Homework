@@ -1,0 +1,29 @@
+package com.atraxo.homework10.Ex4;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class TimeServer {
+
+	String server = "ptbtime1.ptb.de";
+	final int port = 13;
+
+	public static void main(String[] args) throws UnknownHostException, IOException {
+		TimeServer ts = new TimeServer();
+		ts.getTime();
+	}
+
+	void getTime() {
+		try (Socket so = new Socket(server, port)) {
+			BufferedReader br = new BufferedReader(new InputStreamReader(so.getInputStream()));
+			String time = br.readLine();
+			System.out.println("time is: " + time);
+			Thread.sleep(100);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

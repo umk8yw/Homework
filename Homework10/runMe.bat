@@ -1,0 +1,5 @@
+cd bin
+start java com.atraxo.homework10.Ex3.ChatServer
+start java com.atraxo.homework10.Ex3.ChatClient
+start java com.atraxo.homework10.Ex3.ChatClient
+start java com.atraxo.homework10.Ex3.ChatClient

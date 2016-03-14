@@ -1,0 +1,9 @@
+package com.atraxo.homework10.Ex4;
+
+public class TimeServer {
+
+	public static void main(String[] args) {
+
+	}
+
+}

@@ -1,0 +1,52 @@
+package com.atraxo.homework10.Ex3;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ChatServer {
+
+	List<Socket> socketList = new ArrayList<>();
+	ServerSocket serverSocket;
+	ExecutorService executor = Executors.newCachedThreadPool();
+
+	public ChatServer() {
+		try {
+			this.serverSocket = new ServerSocket(6543);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		ChatServer chatServer = new ChatServer();
+		chatServer.run();
+	}
+
+	static void doBroadcast(Socket socket) {
+		while(true){
+			System.out.println(socket);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	void run() {
+		try {
+			while (true) {
+				Socket socket = serverSocket.accept();
+				socketList.add(socket);
+				executor.submit(() -> doBroadcast(socket));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
