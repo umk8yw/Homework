@@ -67,9 +67,12 @@
 
 1.	Create an example where there are two synchronized sections in a class and they still can be run in parallel.
 
+	 -->
+
 2.	Prove that the example Restaurant does not work correctly in case there is more than one waiter in the restaurant
 
 	 --> Restaurant.java
+	 The second WaitPerson never gets its meal.
 
 3.	Solve a single producer, single consumer problem using wait( ) and notify( ). The producer must not overflow the receiver's buffer, which can happen if the producer is faster than the consumer. If the consumer is faster than the producer, then it must not read the same data more than once. Do not assume anything about the relative speeds of the producer or consumer. 
 	
@@ -77,5 +80,5 @@
 	
 4.	Modify Restaurant.java so that multiple WaitPersons generate order requests to multiple Chefs, who produce orders and notify the WaitPerson who generated the request. You�ll need to use queues for both incoming order requests and outgoing orders.
 
-	 --> ModRestaurant.java
+	 --> ModModified.java
 	 
